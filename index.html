@@ -4,175 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Authentication</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div id="authPage">
         <h2 id="authTitle">Sign In</h2>
-        <!-- The error message will now be displayed here -->
-        <div id="errorMessage" style="color: red; margin-bottom: 1rem;" class="hidden"></div>
+        <!-- The message will be displayed here -->
+        <div id="message" class="hidden"></div>
         
         <input type="email" id="emailInput" placeholder="Email">
         <input type="password" id="passwordInput" placeholder="Password">
         
+        <input type="text" id="firstNameInput" placeholder="First Name" class="signup-field hidden">
+        <input type="text" id="middleNameInput" placeholder="Middle Name" class="signup-field hidden">
+        <input type="text" id="surnameInput" placeholder="Surname" class="signup-field hidden">
+
         <button id="authButton">Sign In</button>
         
         <p>
             <span id="switchText">Don't have an account?</span>
-            <span id="switchAuthMode">Sign Up</span>
+            <button id="switchAuthMode">Sign Up</button>
         </p>
     </div>
 
     <div id="welcomePage" class="hidden">
         <h2>Welcome!</h2>
-        <p>You are now signed in.</p>
+        <p id="userEmailDisplay"></p>
         <button id="signOutButton">Sign Out</button>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { 
-            getAuth, 
-            signInWithEmailAndPassword, 
-            createUserWithEmailAndPassword, 
-            signOut, 
-            onAuthStateChanged,
-            signInWithCustomToken,
-            signInAnonymously
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { 
-            getFirestore, 
-            doc, 
-            setDoc, 
-            onSnapshot
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        setLogLevel('debug');
-
-        // --- Firebase Config and Initialization ---
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        let userId;
-
-        // --- DOM Elements ---
-        const authPage = document.getElementById('authPage');
-        const welcomePage = document.getElementById('welcomePage');
-        const authTitle = document.getElementById('authTitle');
-        const emailInput = document.getElementById('emailInput');
-        const passwordInput = document.getElementById('passwordInput');
-        const authButton = document.getElementById('authButton');
-        const switchAuthMode = document.getElementById('switchAuthMode');
-        const switchText = document.getElementById('switchText');
-        const signOutButton = document.getElementById('signOutButton');
-        const errorMessage = document.getElementById('errorMessage');
-
-        let isSignInMode = true;
-
-        // --- Authentication Functions ---
-        const handleAuth = async () => {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            errorMessage.textContent = '';
-            errorMessage.classList.add('hidden');
-
-            if (isSignInMode) {
-                try {
-                    await signInWithEmailAndPassword(auth, email, password);
-                } catch (error) {
-                    // Log the full error to the console for debugging
-                    console.error("Sign-in error:", error);
-                    showError(error.message);
-                }
-            } else {
-                try {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                } catch (error) {
-                    // Log the full error to the console for debugging
-                    console.error("Sign-up error:", error);
-                    showError(error.message);
-                }
-            }
-        };
-
-        const handleSignOut = async () => {
-            try {
-                await signOut(auth);
-            } catch (error) {
-                console.error("Sign-out error:", error);
-                showError(error.message);
-            }
-        };
-
-        const showError = (message) => {
-            errorMessage.textContent = `Error: ${message}`;
-            errorMessage.classList.remove('hidden');
-        };
-        
-        // --- UI Logic ---
-        const toggleAuthMode = () => {
-            isSignInMode = !isSignInMode;
-            if (isSignInMode) {
-                authTitle.textContent = 'Sign In';
-                authButton.textContent = 'Sign In';
-                switchText.textContent = "Don't have an account?";
-                switchAuthMode.textContent = "Sign Up";
-            } else {
-                authTitle.textContent = 'Sign Up';
-                authButton.textContent = 'Sign Up';
-                switchText.textContent = "Already have an account?";
-                switchAuthMode.textContent = "Sign In";
-            }
-        };
-
-        // This function acts as our "page" navigation by showing and hiding elements
-        const showPage = (pageToShow) => {
-            if (pageToShow === 'auth') {
-                authPage.classList.remove('hidden');
-                welcomePage.classList.add('hidden');
-            } else {
-                authPage.classList.add('hidden');
-                welcomePage.classList.remove('hidden');
-            }
-        };
-
-        // --- Event Listeners ---
-        authButton.addEventListener('click', handleAuth);
-        signOutButton.addEventListener('click', handleSignOut);
-        switchAuthMode.addEventListener('click', toggleAuthMode);
-
-        // This listener checks the user's authentication state in real-time
-        // and displays the correct "page" accordingly.
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                // If a user is signed in, show the welcome page
-                userId = user.uid;
-                showPage('welcome');
-            } else {
-                // If no user is signed in, show the authentication page
-                showPage('auth');
-            }
-        });
-
-        // --- Initial anonymous sign-in ---
-        const initialSignIn = async () => {
-            const __initial_auth_token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : undefined;
-            try {
-                if (__initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (error) {
-                console.error("Initial sign-in failed:", error);
-            }
-        };
-
-        initialSignIn();
-    </script>
+    <script type="module" src="script.js"></script>
 
 </body>
 </html>
