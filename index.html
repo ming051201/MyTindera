@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Authentication</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDKs are now loaded via script tags to avoid module issues on GitHub Pages -->
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
 </head>
 <body>
 
     <div id="authPage">
         <h2 id="authTitle">Sign In</h2>
         <!-- The message will be displayed here -->
-        <div id="message" class="hidden"></div>
+        <div id="message" style="margin-bottom: 1rem;" class="hidden"></div>
         
         <input type="email" id="emailInput" placeholder="Email">
         <input type="password" id="passwordInput" placeholder="Password">
@@ -34,7 +39,7 @@
         <button id="signOutButton">Sign Out</button>
     </div>
 
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
