@@ -3,43 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Firebase SDKs are now loaded via script tags to avoid module issues on GitHub Pages -->
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+    <title>Registration</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="authPage">
-        <h2 id="authTitle">Sign In</h2>
-        <!-- The message will be displayed here -->
-        <div id="message" style="margin-bottom: 1rem;" class="hidden"></div>
-        
-        <input type="email" id="emailInput" placeholder="Email">
-        <input type="password" id="passwordInput" placeholder="Password">
-        
-        <input type="text" id="firstNameInput" placeholder="First Name" class="signup-field hidden">
-        <input type="text" id="middleNameInput" placeholder="Middle Name" class="signup-field hidden">
-        <input type="text" id="surnameInput" placeholder="Surname" class="signup-field hidden">
+    <h1>Registration</h1>
 
-        <button id="authButton">Sign In</button>
-        
-        <p>
-            <span id="switchText">Don't have an account?</span>
-            <button id="switchAuthMode">Sign Up</button>
-        </p>
+    <!-- Initial Buttons -->
+    <div id="initial-buttons">
+        <button id="show-signup-btn" data-target="signup-section">Sign Up</button>
+        <button id="show-signin-btn" data-target="signin-section">Sign In</button>
     </div>
 
-    <div id="welcomePage" class="hidden">
-        <h2>Welcome!</h2>
-        <p id="userEmailDisplay"></p>
-        <button id="signOutButton">Sign Out</button>
+    <!-- Sign Up Form -->
+    <div id="signup-section" class="hidden">
+        <hr>
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div>
+                <label for="signup-firstName">First Name:</label>
+                <br>
+                <input type="text" id="signup-firstName" name="firstName">
+            </div>
+            <div>
+                <label for="signup-middleName">Middle Name:</label>
+                <br>
+                <input type="text" id="signup-middleName" name="middleName">
+            </div>
+            <div>
+                <label for="signup-surname">Surname:</label>
+                <br>
+                <input type="text" id="signup-surname" name="surname">
+            </div>
+            <div>
+                <label for="signup-email">Email:</label>
+                <br>
+                <input type="email" id="signup-email" name="email">
+            </div>
+            <div>
+                <label for="signup-password">Password:</label>
+                <br>
+                <input type="password" id="signup-password" name="password">
+            </div>
+            <br>
+            <button type="submit">Sign Up</button>
+        </form>
+        <br>
+        <button class="back-btn" data-target="initial-buttons">Go Back</button>
+    </div>
+    <hr>
+
+    <!-- Sign In Form -->
+    <div id="signin-section" class="hidden">
+        <h2>Sign In</h2>
+        <form id="signin-form">
+            <div>
+                <label for="signin-email">Email:</label>
+                <br>
+                <input type="email" id="signin-email" name="email">
+            </div>
+            <div>
+                <label for="signin-password">Password:</label>
+                <br>
+                <input type="password" id="signin-password" name="password">
+            </div>
+            <br>
+            <button type="submit">Sign In</button>
+        </form>
+        <br>
+        <button class="back-btn" data-target="initial-buttons">Go Back</button>
+    </div>
+    <hr>
+
+    <!-- Sign Out Section -->
+    <div id="signout-section" class="hidden">
+        <h2>Sign Out</h2>
+        <button class="back-btn" data-target="initial-buttons">Sign Out</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = {
+                'initial-buttons': document.getElementById('initial-buttons'),
+                'signup-section': document.getElementById('signup-section'),
+                'signin-section': document.getElementById('signin-section'),
+                'signout-section': document.getElementById('signout-section')
+            };
+
+            // A single function to manage all page transitions
+            function showSection(targetId) {
+                for (const id in sections) {
+                    sections[id].classList.add('hidden');
+                }
+                if (sections[targetId]) {
+                    sections[targetId].classList.remove('hidden');
+                }
+            }
+
+            // Event listeners for showing the sign-up or sign-in forms
+            document.querySelectorAll('#initial-buttons button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const target = event.target.getAttribute('data-target');
+                    showSection(target);
+                });
+            });
+
+            // Event listeners for form submissions
+            document.getElementById('signup-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                showSection('signin-section');
+            });
+            
+            document.getElementById('signin-form').addEventListener('submit', (event) => {
+                event.preventDefault();
+                showSection('signout-section');
+            });
+
+            // Event listeners for "Go Back" and "Sign Out" buttons
+            document.querySelectorAll('.back-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const target = event.target.getAttribute('data-target');
+                    showSection(target);
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
