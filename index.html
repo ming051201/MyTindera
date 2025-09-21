@@ -3,136 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>MyTindera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         .hidden {
             display: none;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
-    <h1>Registration</h1>
+    <div id="app-container" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md space-y-6">
+        <h1 class="text-3xl font-bold text-center text-gray-800">MyTindera</h1>
 
-    <!-- Initial Buttons -->
-    <div id="initial-buttons">
-        <button id="show-signup-btn" data-target="signup-section">Sign Up</button>
-        <button id="show-signin-btn" data-target="signin-section">Sign In</button>
+        <!-- Message/Error Box -->
+        <div id="message-box" class="hidden p-3 rounded-lg text-center" role="alert"></div>
+        
+        <!-- Loading Indicator -->
+        <div id="loading" class="hidden flex items-center justify-center space-x-2">
+            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900"></div>
+            <p>Loading...</p>
+        </div>
+
+        <!-- Initial Buttons -->
+        <div id="initial-buttons" class="space-y-4">
+            <button id="show-signup-btn" data-target="signup-section"
+                class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">
+                Sign Up
+            </button>
+            <button id="show-signin-btn" data-target="signin-section"
+                class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">
+                Sign In
+            </button>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signup-section" class="hidden space-y-4">
+            <h2 class="text-2xl font-semibold text-center text-gray-700">Create Account</h2>
+            <form id="signup-form" class="space-y-4">
+                <div>
+                    <label for="signup-firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                    <input type="text" id="signup-firstName" name="firstName" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="signup-middleName" class="block text-sm font-medium text-gray-700">Middle Name</label>
+                    <input type="text" id="signup-middleName" name="middleName"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="signup-surname" class="block text-sm font-medium text-gray-700">Surname</label>
+                    <input type="text" id="signup-surname" name="surname" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signup-email" name="email" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="signup-password" name="password" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Sign Up</button>
+            </form>
+            <button class="w-full text-sm text-gray-600 hover:text-gray-800 transition-colors back-btn" data-target="initial-buttons">
+                Go Back
+            </button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div id="signin-section" class="hidden space-y-4">
+            <h2 class="text-2xl font-semibold text-center text-gray-700">Sign In to Your Account</h2>
+            <form id="signin-form" class="space-y-4">
+                <div>
+                    <label for="signin-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signin-email" name="email" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="signin-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="signin-password" name="password" required
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <button type="submit" class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Sign In</button>
+            </form>
+            <button class="w-full text-sm text-gray-600 hover:text-gray-800 transition-colors back-btn" data-target="initial-buttons">
+                Go Back
+            </button>
+        </div>
+
+        <!-- Sign Out Section -->
+        <div id="signout-section" class="hidden text-center space-y-4">
+            <h2 class="text-2xl font-semibold text-gray-700">Welcome!</h2>
+            <p>You are now logged in. Your User ID is:</p>
+            <div id="user-id-display" class="bg-gray-200 text-gray-800 p-3 rounded-lg font-mono break-all text-sm"></div>
+            <button id="signout-btn" class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors">Sign Out</button>
+        </div>
     </div>
 
-    <!-- Sign Up Form -->
-    <div id="signup-section" class="hidden">
-        <hr>
-        <h2>Sign Up</h2>
-        <form id="signup-form">
-            <div>
-                <label for="signup-firstName">First Name:</label>
-                <br>
-                <input type="text" id="signup-firstName" name="firstName">
-            </div>
-            <div>
-                <label for="signup-middleName">Middle Name:</label>
-                <br>
-                <input type="text" id="signup-middleName" name="middleName">
-            </div>
-            <div>
-                <label for="signup-surname">Surname:</label>
-                <br>
-                <input type="text" id="signup-surname" name="surname">
-            </div>
-            <div>
-                <label for="signup-email">Email:</label>
-                <br>
-                <input type="email" id="signup-email" name="email">
-            </div>
-            <div>
-                <label for="signup-password">Password:</label>
-                <br>
-                <input type="password" id="signup-password" name="password">
-            </div>
-            <br>
-            <button type="submit">Sign Up</button>
-        </form>
-        <br>
-        <button class="back-btn" data-target="initial-buttons">Go Back</button>
-    </div>
-    <hr>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    <!-- Sign In Form -->
-    <div id="signin-section" class="hidden">
-        <h2>Sign In</h2>
-        <form id="signin-form">
-            <div>
-                <label for="signin-email">Email:</label>
-                <br>
-                <input type="email" id="signin-email" name="email">
-            </div>
-            <div>
-                <label for="signin-password">Password:</label>
-                <br>
-                <input type="password" id="signin-password" name="password">
-            </div>
-            <br>
-            <button type="submit">Sign In</button>
-        </form>
-        <br>
-        <button class="back-btn" data-target="initial-buttons">Go Back</button>
-    </div>
-    <hr>
+        // Enable Firebase debug logging
+        setLogLevel('debug');
 
-    <!-- Sign Out Section -->
-    <div id="signout-section" class="hidden">
-        <h2>Sign Out</h2>
-        <button class="back-btn" data-target="initial-buttons">Sign Out</button>
-    </div>
+        // Firebase Setup
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = {
-                'initial-buttons': document.getElementById('initial-buttons'),
-                'signup-section': document.getElementById('signup-section'),
-                'signin-section': document.getElementById('signin-section'),
-                'signout-section': document.getElementById('signout-section')
-            };
+        // UI Elements
+        const initialButtons = document.getElementById('initial-buttons');
+        const signupSection = document.getElementById('signup-section');
+        const signinSection = document.getElementById('signin-section');
+        const signoutSection = document.getElementById('signout-section');
+        const signupForm = document.getElementById('signup-form');
+        const signinForm = document.getElementById('signin-form');
+        const signoutBtn = document.getElementById('signout-btn');
+        const messageBox = document.getElementById('message-box');
+        const loading = document.getElementById('loading');
+        const userIdDisplay = document.getElementById('user-id-display');
 
-            // A single function to manage all page transitions
-            function showSection(targetId) {
-                for (const id in sections) {
-                    sections[id].classList.add('hidden');
-                }
-                if (sections[targetId]) {
-                    sections[targetId].classList.remove('hidden');
-                }
+        // Firestore private path for user data
+        const userProfilesPath = (userId) => `artifacts/${appId}/users/${userId}/user_profiles/profile`;
+
+        // Utility function to show/hide elements
+        const toggleVisibility = (element, isVisible) => {
+            if (element) {
+                element.classList.toggle('hidden', !isVisible);
             }
+        };
 
-            // Event listeners for showing the sign-up or sign-in forms
-            document.querySelectorAll('#initial-buttons button').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const target = event.target.getAttribute('data-target');
-                    showSection(target);
-                });
-            });
+        // Display messages to the user
+        const displayMessage = (message, type) => {
+            messageBox.textContent = message;
+            toggleVisibility(messageBox, true);
+            messageBox.className = `p-3 rounded-lg text-center ${type === 'error' ? 'bg-red-200 text-red-800' : 'bg-green-200 text-green-800'}`;
+        };
 
-            // Event listeners for form submissions
-            document.getElementById('signup-form').addEventListener('submit', (event) => {
-                event.preventDefault();
-                showSection('signin-section');
-            });
-            
-            document.getElementById('signin-form').addEventListener('submit', (event) => {
-                event.preventDefault();
+        // Main navigation logic
+        const showSection = (targetId) => {
+            const sections = [initialButtons, signupSection, signinSection, signoutSection];
+            sections.forEach(sec => toggleVisibility(sec, false));
+            toggleVisibility(document.getElementById(targetId), true);
+        };
+
+        // Authentication State Listener
+        // This listener fires whenever the user's sign-in state changes.
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in.
+                userIdDisplay.textContent = user.uid;
                 showSection('signout-section');
-            });
+                displayMessage('You are now logged in.', 'success');
+            } else {
+                // User is signed out.
+                showSection('initial-buttons');
+            }
+        });
 
-            // Event listeners for "Go Back" and "Sign Out" buttons
-            document.querySelectorAll('.back-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const target = event.target.getAttribute('data-target');
-                    showSection(target);
-                });
+        // Event Listeners for UI buttons
+        document.querySelectorAll('#initial-buttons button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                showSection(event.target.getAttribute('data-target'));
+                toggleVisibility(messageBox, false);
             });
         });
-    </script>
 
+        // Handle user sign-up
+        signupForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            toggleVisibility(loading, true);
+            toggleVisibility(messageBox, false);
+
+            const email = signupForm['signup-email'].value;
+            const password = signupForm['signup-password'].value;
+            const firstName = signupForm['signup-firstName'].value;
+            const middleName = signupForm['signup-middleName'].value;
+            const surname = signupForm['signup-surname'].value;
+
+            try {
+                // Create a new user with email and password using Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // Store additional user data in Firestore
+                await setDoc(doc(db, userProfilesPath(user.uid)), {
+                    firstName,
+                    middleName,
+                    surname,
+                    email
+                });
+
+                displayMessage('Account created and profile saved successfully! Please sign in.', 'success');
+                showSection('signin-section');
+            } catch (error) {
+                console.error("Sign up error:", error);
+                displayMessage(error.message, 'error');
+            } finally {
+                toggleVisibility(loading, false);
+            }
+        });
+
+        // Handle user sign-in
+        signinForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            toggleVisibility(loading, true);
+            toggleVisibility(messageBox, false);
+
+            const email = signinForm['signin-email'].value;
+            const password = signinForm['signin-password'].value;
+
+            try {
+                // Sign in the user with email and password
+                await signInWithEmailAndPassword(auth, email, password);
+                // The onAuthStateChanged listener will handle the UI update
+            } catch (error) {
+                console.error("Sign in error:", error);
+                displayMessage(error.message, 'error');
+            } finally {
+                toggleVisibility(loading, false);
+            }
+        });
+
+        // Handle user sign-out
+        signoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                displayMessage('Signed out successfully!', 'success');
+                // The onAuthStateChanged listener will handle the UI update
+            } catch (error) {
+                console.error("Sign out error:", error);
+                displayMessage(error.message, 'error');
+            }
+        });
+
+        // Handle "Go Back" buttons
+        document.querySelectorAll('.back-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                showSection('initial-buttons');
+                toggleVisibility(messageBox, false);
+            });
+        });
+
+        // Initially check the auth state to determine which section to show
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userIdDisplay.textContent = user.uid;
+                showSection('signout-section');
+            } else {
+                showSection('initial-buttons');
+            }
+        });
+    </script>
 </body>
 </html>
+
