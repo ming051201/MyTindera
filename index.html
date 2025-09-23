@@ -2,100 +2,109 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <!-- Links for Fonts -->
-   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"> <!-- open sans -->
-   <style>
-     /* BG Coloring */
-     body {
-       margin: 0; padding: 0; background-color: rgb(255, 255, 255);
-       }
-       /* Mobile BG Size and Positioning */
-     .mobile-container {
-       width: 375px;
-       height: 812px;
-       background-color: white;
-       border: 1px solid #000;
-       border-radius: 20px;
-       overflow: auto
-       }
-       body {
-       background-color: #1b77bd;      /* outer bg */
-       display: flex;               
-       justify-content: center;     
-       align-items: center;         
-       height: 100vh;               
-       margin: 0; 
-       }
-     /* Title Positioning & style */
-     .title {
-       position: fixed; 
-       transform: translate(-50%,-50%); 
-       top: 40%; 
-       left: 50%; 
-       font-size: 3vw;
-       font-family: 'open sans'; 
-       }
-     /* Tagline Positioning & style */
-       .tagline {
-       position: fixed;  
-       transform: translate(-50%,-50%); 
-       top: 45%; 
-       left: 50%;
-       font-size: 1vw;
-       font-family: 'open sans'; 
-       }
-     /* Sign In Button Positioning & Style */
-     .btn {
-       position: fixed; 
-       transform:translate(-50%,-50%); 
-       background-color: rgb(255, 255, 255); 
-       color: black; 
-       top: 53%; 
-       left: 50%; 
-       font-size: 1vw; 
-       padding: 1px 12px; 
-       border-radius: 8px; 
-       transition: 0.3s;
-       cursor: pointer; 
-       font-family: 'open sans'; 
-       }
-     /* When the mouse hovers over the button, the background changes to another color */
-     .btn:hover {
-       background-color: rgb(202, 202, 202); 
-       }
-     /* Password Textbox Positioning & Style */
-     .txtbox {
-       position: fixed; 
-       transform:translate(-50%,-50%);
-       background-color: white; 
-       color: black;
-       top: 50%; 
-       left: 50%; 
-       font-size: 1vw; 
-       padding: 5px 12px; 
-       border-radius: 8px;
-       width: 200px; 
-       height: 5px;  
-       cursor: pointer;
-       text-align: center;
-       font-family: 'open sans'; 
-       }
-   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Outer background (desktop only) */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ccc;   /* gray background for testing */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Open Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Phone frame */
+    .mobile-container {
+      width: 375px;
+      height: 812px;
+      background-color: white;
+      border: 2px solid #000;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    /* Title */
+    .title {
+      font-family: 'Chewy', cursive;
+      font-size: clamp(20px, 6vw, 36px);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Tagline */
+    .tagline {
+      font-size: clamp(14px, 4vw, 20px);
+      margin: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    /* Textbox */
+    .txtbox {
+      width: 80%;
+      max-width: 280px;
+      padding: 12px;
+      font-size: clamp(14px, 3vw, 18px);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    /* Button */
+    .btn {
+      width: 80%;
+      max-width: 280px;
+      padding: 12px;
+      font-size: clamp(14px, 3vw, 18px);
+      background-color: rgb(28,146,209);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .btn:hover {
+      background-color: rgb(20,100,150);
+    }
+
+    /* 📱 On mobile phones: make app full screen (no gray, no border) */
+    @media (max-width: 500px) {
+      body {
+        background-color: white;  /* hide gray background */
+      }
+      .mobile-container {
+        width: 100%;
+        height: 100%;
+        border: none;             /* remove fake phone frame */
+        border-radius: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="mobile-container">
-       <!-- Input Title -->
-       <h1 class="title">M y T i n d e r a</h1>
-       <!-- Input Tagline -->
-       <h3 class="tagline">Input Tagline</h3>
-       <!-- Input Password Textbox -->
-       <input type="password" class="txtbox" placeholder="Enter Password"> 
-       <!-- Input Sign In Button -->
-       <button class="btn">Sign In</button>
-    </div>
-  <header> 
+  <div class="mobile-container">
+    <h1 class="title">My Tindera</h1>
+    <h3 class="tagline">Online groceries at your fingertips</h3>
+
+    <input type="password" class="txtbox" placeholder="Enter Password">
+    <button class="btn">Sign In</button>
+  </div>
 </body>
 </html>
 
