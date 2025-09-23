@@ -1,260 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Auth System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8">
+    <!-- Links for Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"> <!-- open sans -->
+   <style>
+     /* BG Coloring */
+     body {
+       margin: 0; padding: 0; background-color: rgb(255, 255, 255);
+       }
+       /* Mobile BG Size and Positioning */
+     .mobile-container {
+       width: 375px;
+       height: 812px;
+       background-color: white;
+       border: 1px solid #000;
+       border-radius: 20px;
+       overflow: auto
+       }
+       body {
+       background-color: #1b77bd;      /* outer bg */
+       display: flex;               
+       justify-content: center;     
+       align-items: center;         
+       height: 100vh;               
+       margin: 0; 
+       }
+     /* Title Positioning & style */
+     .title {
+       position: fixed; 
+       transform: translate(-50%,-50%); 
+       top: 40%; 
+       left: 50%; 
+       font-size: 3vw;
+       font-family: 'open sans'; 
+       }
+     /* Tagline Positioning & style */
+       .tagline {
+       position: fixed;  
+       transform: translate(-50%,-50%); 
+       top: 45%; 
+       left: 50%;
+       font-size: 1vw;
+       font-family: 'open sans'; 
+       }
+     /* Sign In Button Positioning & Style */
+     .btn {
+       position: fixed; 
+       transform:translate(-50%,-50%); 
+       background-color: rgb(255, 255, 255); 
+       color: black; 
+       top: 53%; 
+       left: 50%; 
+       font-size: 1vw; 
+       padding: 1px 12px; 
+       border-radius: 8px; 
+       transition: 0.3s;
+       cursor: pointer; 
+       font-family: 'open sans'; 
+       }
+     /* When the mouse hovers over the button, the background changes to another color */
+     .btn:hover {
+       background-color: rgb(202, 202, 202); 
+       }
+     /* Password Textbox Positioning & Style */
+     .txtbox {
+       position: fixed; 
+       transform:translate(-50%,-50%);
+       background-color: white; 
+       color: black;
+       top: 50%; 
+       left: 50%; 
+       font-size: 1vw; 
+       padding: 5px 12px; 
+       border-radius: 8px;
+       width: 200px; 
+       height: 5px;  
+       cursor: pointer;
+       text-align: center;
+       font-family: 'open sans'; 
+       }
+   </style>
 </head>
-<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-4">
-
-    <div id="loading" class="flex flex-col items-center">
-        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-500"></div>
-        <p class="mt-4 text-purple-400">Loading...</p>
+<body>
+  <header>
+    <div class="mobile-container">
+       <!-- Input Title -->
+       <h1 class="title">M y T i n d e r a</h1>
+       <!-- Input Tagline -->
+       <h3 class="tagline">Input Tagline</h3>
+       <!-- Input Password Textbox -->
+       <input type="password" class="txtbox" placeholder="Enter Password"> 
+       <!-- Input Sign In Button -->
+       <button class="btn">Sign In</button>
     </div>
-
-    <div id="auth-container" class="hidden w-full max-w-md bg-gray-800 p-8 rounded-3xl shadow-2xl transition-all duration-300 transform scale-95 opacity-0">
-        <h1 id="form-title" class="text-3xl font-bold text-center text-purple-400 mb-6">Create Account</h1>
-
-        <form id="auth-form" class="space-y-4">
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
-                <input type="email" id="email" required class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm transition-colors">
-            </div>
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
-                <input type="password" id="password" required class="mt-1 block w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm transition-colors">
-            </div>
-            <button type="submit" id="auth-button" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-colors duration-200">
-                Sign Up
-            </button>
-        </form>
-
-        <p class="mt-4 text-center text-sm">
-            <span id="toggle-text">Already have an account?</span>
-            <button id="toggle-button" class="text-purple-400 hover:text-purple-300 font-medium">Sign In</button>
-        </p>
-
-        <p id="message" class="text-center text-sm mt-4 text-red-400 hidden"></p>
-    </div>
-
-    <div id="user-info-container" class="hidden w-full max-w-md bg-gray-800 p-8 rounded-3xl shadow-2xl transition-all duration-300 transform scale-95 opacity-0">
-        <h2 class="text-3xl font-bold text-center text-purple-400 mb-4">Welcome!</h2>
-        <div class="space-y-3">
-            <p class="text-gray-300">
-                <span class="font-semibold text-gray-200">User ID:</span> <span id="user-id" class="break-all text-sm"></span>
-            </p>
-            <p class="text-gray-300">
-                <span class="font-semibold text-gray-200">Email:</span> <span id="user-email"></span>
-            </p>
-            <p class="text-gray-300">
-                <span class="font-semibold text-gray-200">Created At:</span> <span id="user-creation-date"></span>
-            </p>
-        </div>
-        <button id="sign-out-button" class="mt-6 w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
-            Sign Out
-        </button>
-    </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithCustomToken, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables for the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let app, auth, db;
-
-        const loadingIndicator = document.getElementById('loading');
-        const authContainer = document.getElementById('auth-container');
-        const userInfoContainer = document.getElementById('user-info-container');
-        const formTitle = document.getElementById('form-title');
-        const toggleButton = document.getElementById('toggle-button');
-        const toggleText = document.getElementById('toggle-text');
-        const authButton = document.getElementById('auth-button');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const messageDisplay = document.getElementById('message');
-        const signOutButton = document.getElementById('sign-out-button');
-        
-        let isSignInMode = false;
-        let isAuthReady = false;
-
-        // Initialize Firebase
-        function initializeFirebase() {
-            try {
-                if (Object.keys(firebaseConfig).length > 0) {
-                    app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
-                    db = getFirestore(app);
-                    console.log("Firebase initialized successfully.");
-                    
-                    onAuthStateChanged(auth, async (user) => {
-                        console.log("Auth state changed. User:", user ? user.uid : "null");
-                        isAuthReady = true;
-                        if (user) {
-                            showUserInfo(user);
-                        } else {
-                            showAuthForm();
-                        }
-                    });
-
-                    // Sign in with the provided token or anonymously
-                    if (initialAuthToken) {
-                        signInWithCustomToken(auth, initialAuthToken).catch(error => {
-                            console.error("Custom token sign-in failed, signing in anonymously.", error);
-                            signInAnonymously(auth);
-                        });
-                    } else {
-                        signInAnonymously(auth);
-                    }
-                } else {
-                    console.error("Firebase config is empty. Proceeding without auth services.");
-                    isAuthReady = true;
-                    showAuthForm();
-                    displayMessage("Warning: Firebase configuration is missing. Authentication features are disabled.", true);
-                }
-            } catch (error) {
-                console.error("Failed to initialize Firebase:", error);
-                isAuthReady = true;
-                showAuthForm();
-                displayMessage(`Error: Failed to initialize Firebase. ${error.message}`, true);
-            }
-        }
-
-        function showLoading() {
-            loadingIndicator.classList.remove('hidden');
-            authContainer.classList.add('hidden', 'scale-95', 'opacity-0');
-            userInfoContainer.classList.add('hidden', 'scale-95', 'opacity-0');
-        }
-
-        function showAuthForm() {
-            loadingIndicator.classList.add('hidden');
-            userInfoContainer.classList.add('hidden');
-            authContainer.classList.remove('hidden');
-            setTimeout(() => {
-                authContainer.classList.remove('scale-95', 'opacity-0');
-            }, 10);
-        }
-
-        function showUserInfo(user) {
-            loadingIndicator.classList.add('hidden');
-            authContainer.classList.add('hidden');
-            userInfoContainer.classList.remove('hidden');
-            setTimeout(() => {
-                userInfoContainer.classList.remove('scale-95', 'opacity-0');
-            }, 10);
-            
-            document.getElementById('user-id').textContent = user.uid;
-            document.getElementById('user-email').textContent = user.email || 'N/A';
-            document.getElementById('user-creation-date').textContent = new Date(user.metadata.creationTime).toLocaleDateString();
-        }
-
-        function displayMessage(text, isError = false) {
-            messageDisplay.textContent = text;
-            messageDisplay.classList.remove('hidden', 'text-green-400', 'text-red-400');
-            if (isError) {
-                messageDisplay.classList.add('text-red-400');
-            } else {
-                messageDisplay.classList.add('text-green-400');
-            }
-        }
-
-        toggleButton.addEventListener('click', () => {
-            isSignInMode = !isSignInMode;
-            if (isSignInMode) {
-                formTitle.textContent = "Sign In";
-                authButton.textContent = "Sign In";
-                toggleText.textContent = "Don't have an account?";
-                toggleButton.textContent = "Sign Up";
-            } else {
-                formTitle.textContent = "Create Account";
-                authButton.textContent = "Sign Up";
-                toggleText.textContent = "Already have an account?";
-                toggleButton.textContent = "Sign In";
-            }
-            messageDisplay.classList.add('hidden');
-        });
-
-        authForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = emailInput.value;
-            const password = passwordInput.value;
-            messageDisplay.classList.add('hidden');
-
-            if (!auth) {
-                displayMessage("Authentication services are not available.", true);
-                return;
-            }
-
-            try {
-                let userCredential;
-                if (isSignInMode) {
-                    userCredential = await signInWithEmailAndPassword(auth, email, password);
-                    console.log("User signed in successfully.");
-                } else {
-                    userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                    console.log("User created successfully.");
-
-                    const user = userCredential.user;
-                    
-                    // Save user data to Firestore
-                    const userDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'private_data', user.uid);
-                    await setDoc(userDocRef, {
-                        email: user.email,
-                        creationDate: new Date(user.metadata.creationTime),
-                        appId: appId
-                    });
-                    
-                    // Save public data
-                    const publicUserDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'users', user.uid);
-                    await setDoc(publicUserDocRef, {
-                        email: user.email,
-                        creationDate: new Date(user.metadata.creationTime)
-                    });
-
-                    console.log("User data saved to Firestore.");
-                    displayMessage("Account created successfully! You are now logged in.", false);
-                }
-            } catch (error) {
-                console.error("Authentication Error:", error);
-                displayMessage(error.message, true);
-            }
-        });
-
-        signOutButton.addEventListener('click', async () => {
-            if (!auth) {
-                displayMessage("Authentication services are not available.", true);
-                return;
-            }
-            try {
-                await signOut(auth);
-                console.log("User signed out successfully.");
-                displayMessage("You have been signed out.", false);
-            } catch (error) {
-                console.error("Sign out error:", error);
-                displayMessage(error.message, true);
-            }
-        });
-
-        window.addEventListener('load', () => {
-            initializeFirebase();
-        });
-    </script>
-
+  <header> 
 </body>
 </html>
+
+
 
 
 
