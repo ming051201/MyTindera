@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- mobile scaling -->
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Links for Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Outer background (desktop only) */
+    /* Outer background for desktop testing */
     body {
       margin: 0;
       padding: 0;
-      background-color: #ccc;   /* gray background for testing */
+      background-color: #ccc;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,83 +26,89 @@
       width: 375px;
       height: 812px;
       background-color: white;
-      border: 2px solid #000;
-      border-radius: 30px;
+      border: 1px solid #000;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      justify-content: center; /* vertical centering */
+      align-items: center;     /* horizontal centering */
+      gap: clamp(8px, 2vh, 16px); /* spacing between items, small but flexible */
       padding: 20px;
       box-sizing: border-box;
-      gap: 20px;
-      overflow: hidden;
     }
 
     /* Title */
-    .title {
+    .title h1 {
+      font-size: clamp(20px, 5vw, 32px);
       font-family: 'Chewy', cursive;
-      font-size: clamp(20px, 6vw, 36px);
       margin: 0;
       text-align: center;
     }
 
     /* Tagline */
-    .tagline {
-      font-size: clamp(14px, 4vw, 20px);
+    .tagline h3 {
+      font-size: clamp(12px, 3.5vw, 18px);
       margin: 0;
       text-align: center;
-      color: #333;
     }
 
-    /* Textbox */
+    /* Password textbox */
     .txtbox {
-      width: 80%;
-      max-width: 280px;
-      padding: 12px;
-      font-size: clamp(14px, 3vw, 18px);
-      border: 1px solid #ccc;
+      font-size: clamp(12px, 3.5vw, 16px);
+      padding: clamp(6px, 1.5vh, 10px) clamp(10px, 3vw, 16px);
       border-radius: 8px;
-      font-family: 'Open Sans', sans-serif;
+      border: 1px solid #aaa;
+      width: 80%;
+      box-sizing: border-box;
     }
 
     /* Button */
     .btn {
-      width: 80%;
-      max-width: 280px;
-      padding: 12px;
-      font-size: clamp(14px, 3vw, 18px);
-      background-color: rgb(28,146,209);
-      color: white;
-      border: none;
+      background-color: rgb(255, 255, 255);
+      color: black;
+      font-size: clamp(12px, 3.5vw, 16px);
+      padding: clamp(6px, 1.5vh, 10px) clamp(12px, 3vw, 20px);
       border-radius: 8px;
+      border: 1px solid #aaa;
       cursor: pointer;
       transition: 0.3s;
-      font-family: 'Open Sans', sans-serif;
-    }
-    .btn:hover {
-      background-color: rgb(20,100,150);
+      width: 80%;
     }
 
-    /* 📱 On mobile phones: make app full screen (no gray, no border) */
+    .btn:hover {
+      background-color: rgb(230, 230, 230);
+    }
+
+    /* On real phones, remove the gray background + fake phone frame */
     @media (max-width: 500px) {
       body {
-        background-color: white;  /* hide gray background */
+        background-color: white;
       }
       .mobile-container {
         width: 100%;
         height: 100%;
-        border: none;             /* remove fake phone frame */
         border-radius: 0;
+        border: none;
       }
     }
   </style>
 </head>
 <body>
   <div class="mobile-container">
-    <h1 class="title">My Tindera</h1>
-    <h3 class="tagline">Online groceries at your fingertips</h3>
+    <!-- Input Title -->
+    <div class="title">
+      <h1>My Tindera</h1>
+    </div>
 
+    <!-- Input Tagline -->
+    <div class="tagline">
+      <h3>Sama-sama sa bawat bili</h3>
+    </div>
+
+    <!-- Input Password Textbox -->
     <input type="password" class="txtbox" placeholder="Enter Password">
+
+    <!-- Input Sign In Button -->
     <button class="btn">Sign In</button>
   </div>
 </body>
