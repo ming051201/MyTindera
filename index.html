@@ -10,73 +10,15 @@
   <style>
     /* Outer background for desktop testing */
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; /* remove default outer spacing */
+      padding: 0;  /* remove default inner spacing */
       background-color: #ccc;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      justify-content: center; /* center horizontally */
+      align-items: center; /* center vertically */
+      height: 100vh; /* full screen height */
       font-family: 'Open Sans', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* Phone frame */
-    .mobile-container {
-      width: 375px;
-      height: 812px;
-      background-color: white;
-      border: 1px solid #000;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* vertical centering */
-      align-items: center;     /* horizontal centering */
-      gap: clamp(8px, 2vh, 16px); /* spacing between items, small but flexible */
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    /* Title */
-    .title h1 {
-      font-size: clamp(50px, 3vw, 50px);
-      font-family: 'Chewy', cursive;
-      margin: 0;
-      text-align: center;
-    }
-
-    /* Tagline */
-    .tagline h3 {
-      font-size: clamp(10px, 3.5vw, 10px);
-      margin: 0;
-      text-align: center;
-    }
-
-    /* Password textbox */
-    .txtbox {
-      font-size: clamp(12px, 3.5vw, 16px);
-      padding: clamp(6px, 1.5vh, 10px) clamp(10px, 3vw, 16px);
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      width: 80%;
-      box-sizing: border-box;
-    }
-
-    /* Button */
-    .btn {
-      background-color: rgb(255, 255, 255);
-      color: black;
-      font-size: clamp(12px, 3.5vw, 16px);
-      padding: clamp(6px, 1.5vh, 10px) clamp(12px, 3vw, 20px);
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 80%;
-    }
-
-    .btn:hover {
-      background-color: rgb(230, 230, 230);
+      overflow-x: hidden; /* stop side scrolling */
     }
 
     /* On real phones, remove the gray background + fake phone frame */
@@ -90,6 +32,64 @@
         border-radius: 0;
         border: none;
       }
+    }
+
+    /* Phone frame */
+    .mobile-container {
+      width: 375px;
+      height: 812px;
+      background-color: white;
+      border: 1px solid #000;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertical centering */
+      align-items: center;     /* horizontal centering */
+      gap: clamp(2px, 2vh, 4px); /* spacing between items, small but flexible */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Title */
+    .title h1 {
+      font-size: clamp(40px, 3.5vw, 60px);
+      font-family: 'open sans', cursive;
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Tagline */
+    .tagline h3 {
+      font-size: clamp(5px, 3.5vw, 10px);
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Password textbox */
+    .txtbox {
+      font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(1px, 3vh, 6px) clamp(10px, 3vw, 16px);
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      width: 80%;
+      box-sizing: border-box;
+    }
+
+    /* Button */
+    .btn {
+      background-color: rgb(255, 255, 255);
+      color: black;
+      font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px);
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 15%;
+    }
+
+    .btn:hover {
+      background-color: rgb(230, 230, 230);
     }
   </style>
 </head>
