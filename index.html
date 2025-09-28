@@ -2,142 +2,158 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- mobile scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Links for Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Outer background for desktop testing */
+/*___________________________________________________________________________________________________ BACKGROUND */
+/* MAIN BACKGROUND */
     body {
-      margin: 0; /* remove default outer spacing */
-      padding: 0;  /* remove default inner spacing */
-      background-color: #ccc;
-      display: flex;
-      justify-content: center; /* center horizontally */
-      align-items: center; /* center vertically */
-      height: 100vh; /* full screen height */
-      font-family: 'Open Sans', sans-serif;
-      overflow-x: hidden; /* stop side scrolling */
+      margin: 0; padding: 0; background-color: #ccc; display: flex;
+      justify-content: center; align-items: center; height: 100vh; 
+      font-family: 'Open Sans', sans-serif; overflow-x: hidden;
     }
-
-    /* On real phones, remove the gray background + fake phone frame */
+/* MOBILE BG RESPONSIVENESS */
     @media (max-width: 500px) {
       body {
         background-color: white;
       }
       .mobile-container {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-        border: none;
+        width: 100%; height: 100%; border-radius: 0; border: none;
       }
     }
-
-    /* Phone frame */
+/* MOBILE PHONE FRAME */
     .mobile-container {
-      width: 375px;
-      height: 812px;
-      background-color: white;
-      border: 1px solid #000;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* vertical centering */
-      align-items: center;     /* horizontal centering */
-      gap: clamp(2px, 2vh, 4px); /* spacing between items, small but flexible */
-      padding: 20px;
-      box-sizing: border-box;
+      width: 375px; height: 812px; background-color: white;
+      border: 1px solid #000; border-radius: 20px; display: flex;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: clamp(2px, 2vh, 4px); padding: 20px;box-sizing: border-box;
     }
+/*___________________________________________________________________________________________________ BACKGROUND */
 
-    /* Title */
+
+
+
+/*___________________________________________________________________________________________________ REGISTRATION PAGE */
+/* BRAND NAME */
     .title h1 {
-      font-size: clamp(25px, 3.5vw, 40px);
-      font-family: 'open sans', cursive;
-      margin: 0;
-      text-align: center;
+      font-size: clamp(25px, 3.5vw, 40px); margin: 0; text-align: center;
     }
-
-    /* Tagline */
+/* TAGLINE */
     .tagline h3 {
-      font-size: clamp(5px, 3.5vw, 10px);
-      margin: 0;
-      text-align: center;
+      font-size: clamp(5px, 3.5vw, 10px); margin: 0; text-align: center;
+    }
+/* REMOVES VISIBILITY FOR CLASS="BTN-TOGGLE" */
+    .hidden {
+      display: none !important;
+    }
+/* LOCATION BUTTON */
+    .btn-toggle {
+      background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px; border: 1px solid #aaa;
+      cursor: pointer; transition: 0.3s; width: 50%; margin: 10px auto; display: block;
     }
 
-    /* Password textbox */
-    .txtbox-name {
-      font-size: clamp(5px, 3.5vw, 10px);
-      padding: clamp(1px, 3vh, 6px) clamp(10px, 3vw, 16px);
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      width: 80%;
-      box-sizing: border-box;
+    .btn-toggle:hover {
+      background-color: rgb(230, 230, 230);
+    }
+/* TEXT BOX STYLE */
+    .txtbox-name,
+    .txtbox-hse-no,
+    .txtbox-bldg {
+      font-size: clamp(5px, 3.5vw, 10px); padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
+      border-radius: 8px; border: 1px solid #aaa; width: 100%; box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+/* LAY OUT FOR HOUSE NO. & BUILDING/TOWER */
+    .row-1 {
+      display: flex; gap: 10px; width: 100%;
+    }
+/* LABELLING FOR HOUSE NO. & BUILDING/TOWER */
+    .hse-no-field,
+    .bldg-field {
+      display: flex; flex-direction: column; flex: 1; 
     }
 
-    .hse-no h3 {
-      font-size: clamp(5px, 3.5vw, 10px);
-      margin: 0;
-      text-align: center;
-      margin-left: -185px;
-      margin-top: 30px
-    }
+    .hse-no-field { flex: 1; }
+    .bldg-field { flex: 3; }
 
-    .txtbox-hse-no {
-      font-size: clamp(5px, 3.5vw, 10px);
-      padding: clamp(1px, 3vh, 6px) clamp(10px, 3vw, 16px);
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      width: 25%;
-      box-sizing: border-box;
-      margin-left: -183px;
-      margin-top: 0px;
-    }
-
-    /* Button */
+    .hse-no-field label,
+    .bldg-field {
+      font-size: clamp(5px, 3.5vw, 10px); font-weight: 400; 
+}
+/* ENTER BUTTON */
     .btn-enter {
-      background-color: rgb(255, 255, 255);
-      color: black;
-      font-size: clamp(5px, 3.5vw, 10px);
-      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px);
-      border-radius: 8px;
-      border: 1px solid #aaa;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 15%;
+      background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px;
+      border: 1px solid #aaa; cursor: pointer; transition: 0.3s; width: 30%;
     }
-
     .btn-enter:hover {
       background-color: rgb(230, 230, 230);
     }
+/*___________________________________________________________________________________________________ REGISTRATION PAGE */
   </style>
 </head>
+
+
+
+
+
+
+
+
+
+
 <body>
   <div class="mobile-container">
-    <!-- Input Title -->
-    <div class="title">
-      <h1>M y T i n d e r a</h1>
+<!-- BRAND NAME & TAGLINE -->
+    <div class="title"><h1>M y T i n d e r a</h1></div>
+    <div class="tagline"><h3>Sama-sama sa bawat bili</h3></div>
+<!-- INPUTTING PERSONAL INFORMATION GROUP -->
+    <div class="form">
+<!-- LOCATION BUTTON -->
+      <button type="button" class="btn-toggle" onclick="toggleAddress()">Input Location</button>
+<!-- "TO HIDE LOCATION DETAILS" -->
+      <div class="hidden" id="address-section">
+<!-- FULL NAME -->
+        <input type="text" class="txtbox-name" placeholder="Full Name">
+<!-- HOUSE NO. & BUILDING/TOWER -->
+        <div class="row-1">
+          <div class="hse-no-field">
+            <label for="house">Hse No.</label>
+            <input type="text" id="house" class="txtbox-hse-no" placeholder="Hse No.">
+          </div> 
+          <div class="bldg-field">
+            <label for="building">Building/Tower</label>
+            <input type="text" id="building" class="txtbox-bldg" placeholder="Building/Tower"> 
+          </div>   
+        </div>
+      </div>
     </div>
-
-    <!-- Input Tagline -->
-    <div class="tagline">
-      <h3>Sama-sama sa bawat bili</h3>
-    </div>
-
-    <!-- Input Password Textbox -->
-    <input type="full name" class="txtbox-name" placeholder="Full Name">
-
-    <div class="hse-no">
-      <h3>House No.</h3>
-    </div>
-
-    <input type="house no" class="txtbox-hse-no" placeholder="House No..">
-
-    <!-- Input Sign In Button -->
-    <button class="btn-enter">Enter</button>
+<!-- ENTER BUTTON -->
+    <button class="btn-enter">Enter</button> 
   </div>
+
+
+
+
+
+
+
+
+
+<!-- TOGGLES VISIBILITY OF LOCATION DETAILS -->
+  <script>
+    function toggleAddress() {
+      const section = document.getElementById("address-section");
+      section.classList.toggle("hidden");
+    }
+  </script>
 </body>
 </html>
+
 
 
 
