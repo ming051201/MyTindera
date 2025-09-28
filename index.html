@@ -53,42 +53,49 @@
     .btn-toggle {
       background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
       padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px; border: 1px solid #aaa;
-      cursor: pointer; transition: 0.3s; width: 50%; margin: 10px auto; display: block;
+      cursor: pointer; transition: 0.3s; width: 100%; margin: 10px auto; display: block;
     }
 
     .btn-toggle:hover {
       background-color: rgb(230, 230, 230);
     }
 /* TEXT BOX STYLE */
-    .txtbox-name,
-    .txtbox-hse-no,
-    .txtbox-bldg {
+    .txtbox-name, .txtbox-hse-no, .txtbox-bldg,.txtbox-str,.txtbox-brgy,.txtbox-twn,
+    .txtbox-city, .txtbox-prov {
       font-size: clamp(5px, 3.5vw, 10px); padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
       border-radius: 8px; border: 1px solid #aaa; width: 100%; box-sizing: border-box;
       margin-bottom: 10px;
     }
+    .txtbox-zip {
+      font-size: clamp(5px, 3.5vw, 10px); padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
+      border-radius: 8px; border: 1px solid #aaa; width: 20%; box-sizing: border-box;
+      margin-bottom: 10px;  margin: 0 auto 0 auto; display: block;
+    }
 /* LAY OUT FOR HOUSE NO. & BUILDING/TOWER */
-    .row-1 {
+    .row-1, .row-2, .row-3, .row-4 {
       display: flex; gap: 10px; width: 100%;
     }
 /* LABELLING FOR HOUSE NO. & BUILDING/TOWER */
-    .hse-no-field,
-    .bldg-field {
+    .hse-no-field, .bldg-field, .str-field, .brgy-field, .twn-field, .city-field,.prov-field,.zip-field {
       display: flex; flex-direction: column; flex: 1; 
     }
 
     .hse-no-field { flex: 1; }
     .bldg-field { flex: 3; }
 
-    .hse-no-field label,
-    .bldg-field {
+    .hse-no-field label, .bldg-field label, .str-field label, .brgy-field label, .twn-field label,
+    .city-field label, .prov-field label {
       font-size: clamp(5px, 3.5vw, 10px); font-weight: 400; 
-}
+    }
+    .zip-field label {
+      font-size: clamp(5px, 3.5vw, 10px); font-weight: 400; margin: 0 auto 0 auto; display: block;
+    }
 /* ENTER BUTTON */
     .btn-enter {
       background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
       padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px;
-      border: 1px solid #aaa; cursor: pointer; transition: 0.3s; width: 30%;
+      border: 1px solid #aaa; cursor: pointer; transition: 0.3s; width: 30%; 
+      margin: 20px auto 0 auto; display: block;
     }
     .btn-enter:hover {
       background-color: rgb(230, 230, 230);
@@ -110,31 +117,62 @@
   <div class="mobile-container">
 <!-- BRAND NAME & TAGLINE -->
     <div class="title"><h1>M y T i n d e r a</h1></div>
-    <div class="tagline"><h3>Sama-sama sa bawat bili</h3></div>
+    <div class="tagline"><h3>Dut-dut mo deliver namin!!</h3></div>
 <!-- INPUTTING PERSONAL INFORMATION GROUP -->
     <div class="form">
-<!-- LOCATION BUTTON -->
-      <button type="button" class="btn-toggle" onclick="toggleAddress()">Input Location</button>
+<!-- ORDER BUTTON -->
+      <button type="button" class="btn-toggle" onclick="toggleAddress()">Order Now</button>
 <!-- "TO HIDE LOCATION DETAILS" -->
       <div class="hidden" id="address-section">
 <!-- FULL NAME -->
         <input type="text" class="txtbox-name" placeholder="Full Name">
-<!-- HOUSE NO. & BUILDING/TOWER -->
+<!-- LOCATION DETAILS -->
         <div class="row-1">
           <div class="hse-no-field">
             <label for="house">Hse No.</label>
             <input type="text" id="house" class="txtbox-hse-no" placeholder="Hse No.">
           </div> 
           <div class="bldg-field">
-            <label for="building">Building/Tower</label>
-            <input type="text" id="building" class="txtbox-bldg" placeholder="Building/Tower"> 
+            <label for="building">Building/Tower/Subdivision (if applicable)</label>
+            <input type="text" id="building" class="txtbox-bldg" placeholder="Building/Tower/Subdivision"> 
           </div>   
+        </div>
+        <div class="row-2">
+          <div class="str-field">
+            <label for="street">Street Name.</label>
+            <input type="text" id="street" class="txtbox-str" placeholder="Street Name">
+          </div> 
+          <div class="brgy-field">
+            <label for="barangay">Barangay</label>
+            <input type="text" id="barangay" class="txtbox-brgy" placeholder="Barangay"> 
+          </div>   
+        </div>
+        <div class="row-3">
+          <div class="twn-field">
+            <label for="town/district">Town/District</label>
+            <input type="text" id="town/district" class="txtbox-twn" placeholder="Town/District">
+          </div> 
+          <div class="city-field">
+            <label for="city/municipality">City/Municipality</label>
+            <input type="text" id="city/municipality" class="txtbox-city" placeholder="City/Municipality"> 
+          </div>  
+          <div class="prov-field">
+            <label for="province">Province</label>
+            <input type="text" id="province" class="txtbox-prov" placeholder="Province"> 
+          </div>
+        </div>
+        <div class="row-4">
+          <div class="zip-field">
+            <label for="zipcode">Zipcode</label>
+            <input type="text" id="zipcode" class="txtbox-zip" placeholder="Zipcode">
+          </div>
+        </div>
+          <button class="btn-enter">Enter</button> 
         </div>
       </div>
     </div>
-<!-- ENTER BUTTON -->
-    <button class="btn-enter">Enter</button> 
-  </div>
+
+ 
 
 
 
