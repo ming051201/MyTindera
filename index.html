@@ -60,8 +60,14 @@
       background-color: rgb(230, 230, 230);
     }
 /* TEXT BOX STYLE */
-    .txtbox-name, .txtbox-hse-no, .txtbox-bldg,.txtbox-str,.txtbox-brgy,.txtbox-twn,
-    .txtbox-city, .txtbox-prov {
+    .txtbox-name,
+    .txtbox-hse-no,
+    .txtbox-bldg,
+    .txtbox-str,
+    .txtbox-brgy,
+    .txtbox-twn,
+    .txtbox-city,
+    .txtbox-prov {
       font-size: clamp(5px, 3.5vw, 10px); padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
       border-radius: 8px; border: 1px solid #aaa; width: 100%; box-sizing: border-box;
       margin-bottom: 10px;
@@ -72,19 +78,34 @@
       margin-bottom: 10px;  margin: 0 auto 0 auto; display: block;
     }
 /* LAY OUT FOR HOUSE NO. & BUILDING/TOWER */
-    .row-1, .row-2, .row-3, .row-4 {
+    .row-1,
+    .row-2, 
+    .row-3,
+    .row-4 {
       display: flex; gap: 10px; width: 100%;
     }
 /* LABELLING FOR HOUSE NO. & BUILDING/TOWER */
-    .hse-no-field, .bldg-field, .str-field, .brgy-field, .twn-field, .city-field,.prov-field,.zip-field {
+    .hse-no-field,
+    .bldg-field,
+    .str-field,
+    .brgy-field,
+    .twn-field,
+    .city-field,
+    .prov-field,
+    .zip-field {
       display: flex; flex-direction: column; flex: 1; 
     }
 
     .hse-no-field { flex: 1; }
     .bldg-field { flex: 3; }
 
-    .hse-no-field label, .bldg-field label, .str-field label, .brgy-field label, .twn-field label,
-    .city-field label, .prov-field label {
+    .hse-no-field label,
+    .bldg-field label,
+    .str-field label,
+    .brgy-field label,
+    .twn-field label,
+    .city-field label,
+    .prov-field label {
       font-size: clamp(5px, 3.5vw, 10px); font-weight: 400; 
     }
     .zip-field label {
@@ -116,8 +137,7 @@
 <body>
   <div class="mobile-container">
 <!-- BRAND NAME & TAGLINE -->
-    <div class="title"><h1>M y T i n d e r a</h1></div>
-    <div class="tagline"><h3>Dut-dut mo deliver namin!!</h3></div>
+    <img src="logo.png" alt="My Logo">
 <!-- INPUTTING PERSONAL INFORMATION GROUP -->
     <div class="form">
 <!-- ORDER BUTTON -->
@@ -126,7 +146,7 @@
       <div class="hidden" id="address-section">
 <!-- FULL NAME -->
         <input type="text" class="txtbox-name" placeholder="Full Name">
-<!-- LOCATION DETAILS -->
+<!-- HOUSE NO. & BUILDING/TOWER -->
         <div class="row-1">
           <div class="hse-no-field">
             <label for="house">Hse No.</label>
@@ -139,7 +159,7 @@
         </div>
         <div class="row-2">
           <div class="str-field">
-            <label for="street">Street Name</label>
+            <label for="street">Street Name.</label>
             <input type="text" id="street" class="txtbox-str" placeholder="Street Name">
           </div> 
           <div class="brgy-field">
