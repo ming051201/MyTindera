@@ -52,7 +52,7 @@
 
     /* Title */
     .title h1 {
-      font-size: clamp(40px, 3.5vw, 50px);
+      font-size: clamp(25px, 3.5vw, 40px);
       font-family: 'open sans', cursive;
       margin: 0;
       text-align: center;
@@ -66,7 +66,7 @@
     }
 
     /* Password textbox */
-    .txtbox {
+    .txtbox-name {
       font-size: clamp(5px, 3.5vw, 10px);
       padding: clamp(1px, 3vh, 6px) clamp(10px, 3vw, 16px);
       border-radius: 8px;
@@ -75,8 +75,27 @@
       box-sizing: border-box;
     }
 
+    .hse-no h3 {
+      font-size: clamp(5px, 3.5vw, 10px);
+      margin: 0;
+      text-align: center;
+      margin-left: -185px;
+      margin-top: 30px
+    }
+
+    .txtbox-hse-no {
+      font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(1px, 3vh, 6px) clamp(10px, 3vw, 16px);
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      width: 25%;
+      box-sizing: border-box;
+      margin-left: -183px;
+      margin-top: 0px;
+    }
+
     /* Button */
-    .btn {
+    .btn-enter {
       background-color: rgb(255, 255, 255);
       color: black;
       font-size: clamp(5px, 3.5vw, 10px);
@@ -88,7 +107,7 @@
       width: 15%;
     }
 
-    .btn:hover {
+    .btn-enter:hover {
       background-color: rgb(230, 230, 230);
     }
   </style>
@@ -106,10 +125,16 @@
     </div>
 
     <!-- Input Password Textbox -->
-    <input type="password" class="txtbox" placeholder="Enter Password">
+    <input type="full name" class="txtbox-name" placeholder="Full Name">
+
+    <div class="hse-no">
+      <h3>House No.</h3>
+    </div>
+
+    <input type="house no" class="txtbox-hse-no" placeholder="House No..">
 
     <!-- Input Sign In Button -->
-    <button class="btn">Sign In</button>
+    <button class="btn-enter">Enter</button>
   </div>
 </body>
 </html>
