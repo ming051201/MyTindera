@@ -23,10 +23,11 @@
     }
 /* MOBILE PHONE FRAME */
     .mobile-container {
-      width: 375px; height: 100vh; background-color: white;
+      width: 375px; min-height: 100vh; background-color: white;
       border: 1px solid #000; border-radius: 20px; display: flex;
       flex-direction: column; justify-content: center; align-items: center;
-      gap: clamp(2px, 2vh, 4px); padding: 20px;box-sizing: border-box;
+      gap: clamp(2px, 2vh, 4px); padding: 20px; box-sizing: border-box; overflow-y: auto;
+      position: relative;
     }
     
 .header {
