@@ -54,7 +54,7 @@
     .btn-toggle:hover {
       background-color: rgb(230, 230, 230);
     }
-/* TEXT BOX STYLE */
+/* LOCATION TEXT BOX STYLE */
     .txtbox-name, .txtbox-hse-no, .txtbox-bldg, .txtbox-str, .txtbox-brgy,
     .txtbox-twn, .txtbox-city, .txtbox-prov, .txtbox-zip {
       font-size: clamp(5px, 3.5vw, 10px); padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
@@ -94,7 +94,7 @@
       <div class="hidden" id="address-section">
 <!-- FULL NAME -->
         <input type="text" class="txtbox-name" placeholder="Full Name">
-<!-- HOUSE NO. & BUILDING/TOWER -->
+<!-- LOCATION TEXTBOX -->
         <div class="row-1">
           <div class="hse-no-field">
             <input type="text" id="house" class="txtbox-hse-no" placeholder="Hse No.">
@@ -124,8 +124,9 @@
           <div class="zip-field">
             <input type="text" id="zipcode" class="txtbox-zip" placeholder="Zipcode">
           </div>
+<!-- SHOP NOW (PROCEED TO ORDER LIST) BUTTON -->
         </div>
-          <button class="btn-enter">SHOP NOW</button> 
+          <button class="btn-enter" onclick="goToOrderList()">SHOP NOW</button> 
         </div>
       </div>
     </div>
@@ -134,6 +135,12 @@
     function toggleAddress() {
       const section = document.getElementById("address-section");
       section.classList.toggle("hidden");
+    }
+  </script>
+  <!-- TO PROCEED TO ORDERLIST -->
+  <script>
+    function goToOrderList() {
+      window.location.href = "order-list.html"
     }
   </script>
 </body>
