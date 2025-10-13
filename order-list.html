@@ -54,7 +54,7 @@
     }
 /* SEARCH BOX */
     .search-box {
-        width: 85%; max-width: 320px; padding: 10px 15px; height: clamp(25px, 5vw, 35px);
+        width: 85%; max-width: 320px; padding: 10px 15px; height: clamp(10px, 5vw, 20px);
         font-size: clamp(10px, 3.5vw, 14px); border: 2px solid white; border-radius: 8px;
         outline: none; box-sizing: border-box;
     }
@@ -65,11 +65,26 @@
         width: 360px; border: 2px solid navy; border-radius: 10px; padding: 10px; margin: 15px auto;
         display: flex; align-items: flex-start; gap: 10px; box-sizing: border-box;
     }
+    .btn-order-group {
+        display: flex;
+        justify-content: center;
+        gap: 10px; 
+        margin-top: 8px;
+    }
+    .btn-clear, .btn-basket, .btn-finalize {
+        background-color: rgb(0, 51, 102); color: white; font-size: clamp(5px, 3.5vw, 10px);
+        padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px;
+        border: none; cursor: pointer; transition: 0.3s; display: inline-block;  
+        margin: 10px auto 0 auto;  
+    }
+    .btn-clear:hover, .btn-basket:hover, .btn-finalize:hover {
+        background-color: rgb(230, 230, 230);
+    }
 /*___________________________________________________________________________________________________ HEADER */
 /*___________________________________________________________________________________________________ PRODUCT CONTAINER */
 /* PRODUCT IMAGE */
     .product img {
-        width: 120px; height: 120px; border-radius: 10px; object-fit: cover;        margin-right: 15px;
+        width: 120px; height: 120px; border-radius: 10px; object-fit: cover; margin-right: 15px;
         flex-shrink: 0;
     }
 /* PRODUCT DETAILS */
@@ -100,8 +115,9 @@
     }
 
     .price {
-        margin-top: 5px; font-size: clamp(8px,2.5vw, 12px); color: #007700; font-weight: bold;
+        margin-top: 5px; font-size: clamp(8px,2.5vw, 12px); color: #000000; font-weight: bold;
     }
+
 /*___________________________________________________________________________________________________ PRODUCT CONTAINER */
   </style>
 </head>
@@ -110,9 +126,16 @@
 <!-- BRAND NAME & TAGLINE, & SEARCH BOX -->
     <div class="header">
       <h1>MY WEBSITE</h1>
-        <input type="text" class="search-box" placeholder="Search products...">
+      <input type="text" class="search-box" placeholder="Search products...">
+      <div class="button-group">
+        <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
+        <button class="btn-basket" onlclick="showOrderSummary()">BASKET</button>
+        <button class="btn-finalize" onclick="showFinalizedOrder()">FINALIZE</button>
+      </div>
     </div>
+    
 <!-- PRODUCT IMAGE, CODE & NAME, QUANTITY, & PRICE -->
+<!-- 100001-->
     <div class="product">
       <img src="100001.png" alt="San Marino">
       <div class="product-details">
@@ -126,40 +149,234 @@
             <input type="number" class="qty-box" value="0" min="0">
             <div class="price">₱35.00</div>
         </div>
-        <div class="quantity-section">
-          <label>CS.</label>
-          <input type="number" class="qty-box" min="0" value="0">
-          <p class="price">₱500.00</p>
-        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
         </div>
       </div>
     </div>
-
-          
-     
-      <div class="product"><h3>100002</h3><p>San Marino</p></div>
-      <div class="product"><h3>100003</h3><p>San Marino</p></div>
-      <div class="product"><h3>100004</h3><p>San Marino</p></div>
-      <div class="product"><h3>100005</h3><p>San Marino</p></div>
-      <div class="product"><h3>100006</h3><p>San Marino</p></div>
-      <div class="product"><h3>100007</h3><p>San Marino</p></div>
-      <div class="product"><h3>100008</h3><p>San Marino</p></div>
-      <div class="product"><h3>100009</h3><p>San Marino</p></div>
-      <div class="product"><h3>100010</h3><p>San Marino</p></div>
-      <div class="product"><h3>100011</h3><p>San Marino</p></div>
-      <div class="product"><h3>100012</h3><p>San Marino</p></div>
-      <div class="product"><h3>100013</h3><p>San Marino</p></div>
-      <div class="product"><h3>100014</h3><p>San Marino</p></div>
-      <div class="product"><h3>100015</h3><p>San Marino</p></div>
-      <div class="product"><h3>100016</h3><p>San Marino</p></div>
-      <div class="product"><h3>100017</h3><p>San Marino</p></div>
-      <div class="product"><h3>100018</h3><p>San Marino</p></div>
-      <div class="product"><h3>100019</h3><p>San Marino</p></div>
-      <div class="product"><h3>100020</h3><p>San Marino</p></div>
+<!-- 100002-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
     </div>
+<!-- 100003-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100004-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100005-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100006-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100007-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100008-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100009-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100010-->
+    <div class="product">
+      <img src="default.png" alt="San Marino">
+      <div class="product-details">
+        <div class="product-info">
+          <h3>Product #</h3>
+          <p>Product Name</p>
+        </div>
+      <div class="quantity-group">
+        <div class="quantity-section">
+            <label>PC.</label>
+            <input type="number" class="qty-box" value="0" min="0">
+            <div class="price">₱35.00</div>
+        </div>
+          <div class="quantity-section">
+            <label>CS.</label>
+            <input type="number" class="qty-box" min="0" value="0">
+            <p class="price">₱500.00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 100011-->
+<!-- 100012-->
+<!-- 100013-->
+<!-- 100014-->
+<!-- 100015-->
+<!-- 100016-->
+<!-- 100017-->
+<!-- 100018-->
+<!-- 100019-->
+<!-- 100020-->
   </div>
+ <!--  CLEAR ORDER FUNCTION -->
+  <script>
+    function clearOrders() {
+      const qtyBoxes = document.querySelectorAll('.qty-box');
+      qtyBoxes.forEach(box => box.value = 0);
+      alert("All quantities have been cleared!");
+    }
+  </script>
 </body>
 </html>
+
 
 
 
