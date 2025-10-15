@@ -85,7 +85,6 @@ html, body { width: 100%; height: 100%; }
   margin-top: 5px; font-size: clamp(8px,2.5vw,12px);
   color: #000000; font-weight: bold;
 }
-/*___________________________________________________________________________________________________ PRODUCT CONTAINER */
 /*___________________________________________________________________________________________________ MODAL POPUP */
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.5);
@@ -117,7 +116,6 @@ html, body { width: 100%; height: 100%; }
 }
 .modal-close:hover { background: rgb(20,70,130); }
 body.modal-open { overflow: hidden; }
-/*___________________________________________________________________________________________________ MODAL POPUP */
   </style>
 </head>
 <body>
@@ -403,23 +401,27 @@ function updateOrderSummary() {
     const name = prod.querySelector('p').textContent.trim();
     const qtyBoxes = prod.querySelectorAll('.qty-box');
     let subtotal = 0;
-    let ordered = false;
+    let details = '';
 
-    qtyBoxes.forEach(box => {
+    qtyBoxes.forEach((box, index) => {
       const qty = parseInt(box.value) || 0;
       const price = parseFloat(box.dataset.price);
+      const type = index === 0 ? 'PC' : 'CS'; // distinguish PC and CS
+
       if (qty > 0) {
-        subtotal += qty * price;
-        ordered = true;
+        const itemTotal = qty * price;
+        subtotal += itemTotal;
+        details += `${type}: ${qty} × ₱${price.toFixed(2)} = ₱${itemTotal.toFixed(2)}<br>`;
       }
     });
 
-    if (ordered) {
+    if (subtotal > 0) {
       total += subtotal;
       summaryHTML += `
-        <div style="margin-bottom:10px">
+        <div style="margin-bottom:10px; border-bottom:1px solid #ddd; padding-bottom:5px;">
           <strong>${code}</strong> - ${name}<br>
-          Subtotal: ₱${subtotal.toFixed(2)}
+          ${details}
+          <strong>Subtotal:</strong> ₱${subtotal.toFixed(2)}
         </div>`;
     }
   });
@@ -445,6 +447,7 @@ document.getElementById('order-summary-overlay').addEventListener('click', e => 
 </script>
 </body>
 </html>
+
 
 
 
