@@ -36,6 +36,22 @@ html, body { width: 100%; height: 100%; }
   justify-content: center; padding: 15px 0; z-index: 1000;
 }
 .header h1 { color: white; margin: 0 0 10px 0; font-size: 20px; }
+.back-btn {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  color: #aad4ff;
+}
+
 .logo2 {
   height: 40px;           /* adjust size */
   width: auto;
@@ -165,6 +181,7 @@ body.modal-open { overflow: hidden; }
 <body>
   <div class="mobile-container">
     <div class="header">
+      <button class="back-btn" onclick="goBack()"><</button>
       <img src="logo2.png" alt="My Website Logo" class="logo2">
       <input type="text" class="search-box" placeholder="Search products..." />
       <div class="btn-order-group">
@@ -572,9 +589,14 @@ function updatePaginationButtons(activePage) {
 // Initialize first page
 displayProducts(currentPage);
 
+function goBack() {
+  window.history.back(); // takes you to the previous page
+}
+
 </script>
 </body>
 </html>
+
 
 
 
