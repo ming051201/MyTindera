@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalized Orders</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      width: 100%;
+      max-width: 375px;
+      background-color: rgb(0,51,102);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 325px;
+      background: white;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      max-height: 70vh;
+    }
+
+    .table-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 5px;
+      font-size: 10px;
+    }
+
+    th {
+      background-color: rgb(0,51,102);
+      color: white;
+    }
+
+    .total-sticky {
+      position: sticky;
+      bottom: 0;
+      background: rgb(0,51,102);
+      color: white;
+      border-top: 2px solid #ddd;
+      text-align: right;
+      font-weight: bold;
+      padding: 10px 12px;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .btn-export {
+      background: rgb(0,51,102);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+
+    .btn-export:hover {
+      background: rgb(20,70,130);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <button class="back-btn" onclick="goBack()">&#8592;</button>
+    <h2>Finalized Orders</h2>
+  </div>
+
+  <div class="container">
+    <div class="table-wrapper" id="orderContainer">
+      <p>Loading finalized orders...</p>
+    </div>
+    <div id="grandTotal" class="total-sticky">Grand Total: ₱0.00</div>
+  </div>
+
+  <button class="btn-export" onclick="exportToExcel()">Download Excel</button>
+
+  <!-- SheetJS Library -->
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+
+    const container = document.getElementById('orderContainer');
+    const totalDisplay = document.getElementById('grandTotal');
+    const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
+
+    if (finalizedOrders.length === 0) {
+      container.innerHTML = '<p>No finalized orders found.</p>';
+      totalDisplay.textContent = 'Grand Total: ₱0.00';
+    } else {
+      let totalAmount = 0;
+      let html = `
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Product</th>
+              <th>UOM</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      finalizedOrders.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.code}</td>
+            <td>${item.name}</td>
+            <td>${item.type}</td>
+            <td>${item.qty}</td>
+            <td>₱${item.price.toFixed(2)}</td>
+            <td>₱${item.total.toFixed(2)}</td>
+          </tr>
+        `;
+        totalAmount += item.total;
+      });
+      
+      html += `<tr>
+             <td colspan="5" style="text-align:right; font-weight:bold;">Grand Total</td>
+             <td style="font-weight:bold;">₱${totalAmount.toFixed(2)}</td>
+           </tr>`;
+
+      html += `</tbody></table>`;
+      container.innerHTML = html;
+      totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;
+    }
+
+    function exportToExcel() {
+      const table = document.getElementById('ordersTable');
+      const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
+      XLSX.writeFile(wb, "FinalizedOrders.xlsx");
+    }
+  </script>
+</body>
+</html>
