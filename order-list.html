@@ -507,44 +507,55 @@ document.getElementById('order-summary-overlay').addEventListener('click', e => 
   if (e.target.id === 'order-summary-overlay') closeSummary();
 });
 
-// SEARCH FUNCTION
-const searchBox = document.querySelector('.search-box');
-searchBox.addEventListener('input', function() {
-  const searchTerm = this.value.toLowerCase().trim();
-  const products = document.querySelectorAll('.product');
-
-  products.forEach(prod => {
-    const code = prod.querySelector('h3').textContent.toLowerCase();
-    const name = prod.querySelector('p').textContent.toLowerCase();
-
-    if (code.includes(searchTerm) || name.includes(searchTerm)) {
-      prod.style.display = 'flex'; // show matching product
-    } else {
-      prod.style.display = 'none'; // hide non-matching product
-    }
-  });
-});
-
-// PAGINATION FUNCTIONALITY WITH PREV & NEXT BUTTONS
-const productsPerPage = 5; // Change this number to show more/less products per page
-const allProducts = document.querySelectorAll('.product');
+// ✅ SEARCH + PAGINATION FIXED VERSION (FULLY FUNCTIONAL)
+const productsPerPage = 5;
+const allProducts = Array.from(document.querySelectorAll('.product'));
 const paginationContainer = document.getElementById('pagination');
+const searchBox = document.querySelector('.search-box');
+
+let filteredProducts = [...allProducts]; // current visible set (search results or all)
 let currentPage = 1;
 
-function displayProducts(page) {
-  const start = (page - 1) * productsPerPage;
-  const end = start + productsPerPage;
+// 🔍 SEARCH FUNCTION — updates pagination
+searchBox.addEventListener('input', function () {
+  const searchTerm = this.value.toLowerCase().trim();
 
-  allProducts.forEach((prod, index) => {
-    prod.style.display = (index >= start && index < end) ? 'flex' : 'none';
+  // Filter products based on search
+  filteredProducts = allProducts.filter(prod => {
+    const code = prod.querySelector('h3').textContent.toLowerCase();
+    const name = prod.querySelector('p').textContent.toLowerCase();
+    return code.includes(searchTerm) || name.includes(searchTerm);
   });
 
+  // Reset page number after search
+  currentPage = 1;
+  displayProducts(currentPage);
+});
+
+// 📄 DISPLAY PRODUCTS PER PAGE
+function displayProducts(page) {
+  // Hide all first
+  allProducts.forEach(prod => prod.style.display = 'none');
+
+  // Compute current page subset
+  const start = (page - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const visibleProducts = filteredProducts.slice(start, end);
+
+  // Show only products for this page
+  visibleProducts.forEach(prod => prod.style.display = 'flex');
+
+  // Update pagination controls
   updatePaginationButtons(page);
 }
 
+// 🧭 UPDATE PAGINATION BUTTONS (works with search results)
 function updatePaginationButtons(activePage) {
   paginationContainer.innerHTML = '';
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  if (totalPages <= 1) return; // no need to show buttons for one page
 
   // Previous button
   const prevBtn = document.createElement('button');
@@ -586,8 +597,10 @@ function updatePaginationButtons(activePage) {
   paginationContainer.appendChild(nextBtn);
 }
 
-// Initialize first page
+// 🚀 INITIALIZE PAGE
 displayProducts(currentPage);
+
+
 
 function goBack() {
   window.history.back(); // takes you to the previous page
