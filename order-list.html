@@ -36,6 +36,13 @@ html, body { width: 100%; height: 100%; }
   justify-content: center; padding: 15px 0; z-index: 1000;
 }
 .header h1 { color: white; margin: 0 0 10px 0; font-size: 20px; }
+.logo2 {
+  height: 40px;           /* adjust size */
+  width: auto;
+  display: block;
+  margin-bottom: 5px;     /* space below logo */
+  object-fit: contain;
+}
 .search-box {
   width: 85%; max-width: 320px; padding: 10px 15px;
   font-size: clamp(10px, 3.5vw, 14px); border: 2px solid white;
@@ -158,7 +165,7 @@ body.modal-open { overflow: hidden; }
 <body>
   <div class="mobile-container">
     <div class="header">
-      <h1>MY WEBSITE</h1>
+      <img src="logo2.png" alt="My Website Logo" class="logo2">
       <input type="text" class="search-box" placeholder="Search products..." />
       <div class="btn-order-group">
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
@@ -568,6 +575,7 @@ displayProducts(currentPage);
 </script>
 </body>
 </html>
+
 
 
 
