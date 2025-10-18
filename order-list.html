@@ -187,7 +187,7 @@ body.modal-open { overflow: hidden; }
       <div class="btn-order-group">
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
         <button class="btn-basket" onclick="showOrderSummary()">BASKET</button>
-        <button class="btn-finalize">FINALIZE</button>
+        <button class="btn-finalize" onclick="finalizeOrder()">FINALIZE</button>
       </div>
     </div>
 
@@ -593,6 +593,30 @@ function goBack() {
   window.history.back(); // takes you to the previous page
 }
 
+function finalizeOrder() {
+  const orders = [];
+  document.querySelectorAll('.product').forEach(prod => {
+    const code = prod.querySelector('h3').textContent.trim();
+    const name = prod.querySelector('p').textContent.trim();
+    const qtyBoxes = prod.querySelectorAll('.qty-box');
+
+    qtyBoxes.forEach((box, index) => {
+      const qty = parseInt(box.value) || 0;
+      if (qty > 0) {
+        const price = parseFloat(box.dataset.price);
+        const type = index === 0 ? 'PC' : 'CS';
+        const total = qty * price;
+        orders.push({ code, name, type, qty, price, total });
+      }
+    });
+  });
+
+  // Save to localStorage
+  localStorage.setItem('finalizedOrders', JSON.stringify(orders));
+
+  // Go to finalized page
+  window.location.href = 'finalize.html';
+}
 </script>
 </body>
 </html>
