@@ -195,3 +195,19 @@ function finalizeOrder() {
   localStorage.setItem('finalizedOrders', JSON.stringify(orders));
   window.location.href = 'finalize.html';
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lazyImages = document.querySelectorAll(".lazy-image");
+  
+  lazyImages.forEach(img => {
+    const realSrc = img.dataset.src;
+    const image = new Image();
+    image.src = realSrc;
+    image.onload = () => {
+      img.src = realSrc;
+      img.classList.add("loaded");
+    };
+  });
+});
+
+
