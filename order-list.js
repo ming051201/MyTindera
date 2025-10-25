@@ -195,3 +195,14 @@ function finalizeOrder() {
   localStorage.setItem('finalizedOrders', JSON.stringify(orders));
   window.location.href = 'finalize.html';
 }
+
+window.addEventListener("load", () => {
+  // Get all <img> elements inside your product list
+  const productImages = document.querySelectorAll(".product img");
+
+  productImages.forEach(img => {
+    const preload = new Image();
+    preload.src = img.src;
+  });
+});
+
