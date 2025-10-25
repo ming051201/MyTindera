@@ -198,7 +198,7 @@ function finalizeOrder() {
 
 window.addEventListener("load", () => {
   // Get all <img> elements inside your product list
-  const productImages = document.querySelectorAll(".product img");
+  const productImages = document.querySelectorAll(".product");
 
   productImages.forEach(img => {
     const preload = new Image();
