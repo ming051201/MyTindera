@@ -146,9 +146,16 @@
     function goToOrderList() {
       window.location.href = "order-list.html"
     }
+
+document.querySelectorAll('img').forEach(img => {
+  if (!img.src.includes('logo-photo/')) {
+    img.src = 'logo-photo/' + img.getAttribute('src');
+  }
+});
   </script>
 </body>
 </html>
+
 
 
 
