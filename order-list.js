@@ -514,3 +514,4 @@ document.querySelectorAll('img').forEach(img => {
     img.src = 'product-photo/' + img.getAttribute('src');
   }
 });
+
