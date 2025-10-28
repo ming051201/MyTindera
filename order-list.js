@@ -509,3 +509,8 @@ window.addEventListener("load", () => {
   });
 });
 
+document.querySelectorAll('img').forEach(img => {
+  if (!img.src.includes('product-photo/')) {
+    img.src = 'product-photo/' + img.getAttribute('src');
+  }
+});
