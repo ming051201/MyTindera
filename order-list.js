@@ -597,7 +597,7 @@ document.getElementById('order-summary-overlay').addEventListener('click', e => 
 });
 
 // ✅ SEARCH + PAGINATION (WORKS WITH SEARCH)
-const productsPerPage = 25;
+const productsPerPage = 100;
 const allProducts = Array.from(document.querySelectorAll('.product'));
 const paginationContainer = document.getElementById('pagination');
 const searchBox = document.querySelector('.search-box');
