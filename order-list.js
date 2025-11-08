@@ -825,6 +825,35 @@ function clearOrders() {
   alert("All quantities cleared!");
 }
 
+
+function toggleDropdown() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    const dropdown = document.getElementById("dropdownMenu");
+    if (dropdown && dropdown.classList.contains('show')) {
+      dropdown.classList.remove('show');
+    }
+  }
+}
+
+function filterCategory(category) {
+  const products = document.querySelectorAll(".product");
+  products.forEach(product => {
+    if (category === "all" || product.dataset.category === category) {
+      product.style.display = "flex";
+    } else {
+      product.style.display = "none";
+    }
+  });
+
+  // Close dropdown after selecting
+  document.getElementById("dropdownMenu").classList.remove("show");
+}
+
 // 🪟 Show modal
 function showOrderSummary() {
   document.getElementById('order-summary-overlay').style.display = 'flex';

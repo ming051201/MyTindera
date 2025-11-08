@@ -14,6 +14,14 @@
       <img src="logo2.png" alt="My Website Logo" class="logo2">
       <input type="text" class="search-box" placeholder="Search products..." />
       <div class="btn-order-group">
+       <div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropbtn">CATEGORY ▼</button>
+    <div id="dropdownMenu" class="dropdown-content">
+      <a href="#" onclick="filterCategory('all')">ALL</a>
+      <a href="#" onclick="filterCategory('can')">CANNED & PACK FOOD</a>
+      <a href="#" onclick="filterCategory('beverages')">BEVERAGES</a>
+    </div>
+  </div>
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
         <button class="btn-basket" onclick="showOrderSummary()">BASKET</button>
         <button class="btn-finalize" onclick="finalizeOrder()">FINALIZE</button>
@@ -38,7 +46,7 @@
 
 <!-- PRODUCT LIST -->
 <!-- 10001 -->
-<div class="product">
+<div class="product" data-category="can">
   <img src="10001.png" alt="10001" />
   <div class="product-details">
     <div class="product-info">
@@ -214,7 +222,7 @@
   </div>
 </div>
 <!-- 10009 -->
-<div class="product">
+<div class="product" data-category="beverages">
   <img src="10009.png" alt="10009" />
   <div class="product-details">
     <div class="product-info">
@@ -6360,7 +6368,7 @@
 </div>
 <!-- 10288 -->
 <div class="product">
-  <img src="10288.png" alt="10288.png" />
+  <img src="10288.png" alt="10288" />
   <div class="product-details">
     <div class="product-info">
       <h3>10288.png</h3>
@@ -6382,10 +6390,10 @@
 </div>
 <!-- 10289 -->
 <div class="product">
-  <img src="10289.png" alt="10289.png" />
+  <img src="10289.png" alt="10289" />
   <div class="product-details">
     <div class="product-info">
-      <h3>10299.png</h3>
+      <h3>10289.png</h3>
       <p>MILO POWDERED CHOCO MALT MILK DRINK TWIN PACK 48G 8S</p>
     </div>
     <div class="quantity-group">
