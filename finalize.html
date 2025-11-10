@@ -117,63 +117,113 @@
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
   <script>
-    function goBack() {
-      window.history.back();
-    }
+ function goBack() {
+  window.history.back();
+}
 
-    const container = document.getElementById('orderContainer');
-    const totalDisplay = document.getElementById('grandTotal');
-    const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
+const container = document.getElementById('orderContainer');
+const totalDisplay = document.getElementById('grandTotal');
 
-    if (finalizedOrders.length === 0) {
-      container.innerHTML = '<p>No finalized orders found.</p>';
-      totalDisplay.textContent = 'Grand Total: ₱0.00';
-    } else {
-      let totalAmount = 0;
-      let html = `
-        <table id="ordersTable">
-          <thead>
-            <tr>
-              <th>Code</th>
-              <th>Product</th>
-              <th>UOM</th>
-              <th>Qty</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
+// Retrieve finalized orders from localStorage
+const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
 
-      finalizedOrders.forEach(item => {
-        html += `
-          <tr>
-            <td>${item.code}</td>
-            <td>${item.name}</td>
-            <td>${item.type}</td>
-            <td>${item.qty}</td>
-            <td>₱${item.price.toFixed(2)}</td>
-            <td>₱${item.total.toFixed(2)}</td>
-          </tr>
-        `;
-        totalAmount += item.total;
-      });
-      
-      html += `<tr>
+// Retrieve saved location from localStorage
+const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
+
+// Build formatted location string
+let locationString = `${locationData.house || ''}`.trim() + 
+                     `,${locationData.building || ''}`.trim() +
+                     `, ${locationData.street || ''}`.trim() +
+                     `, ${locationData.barangay || ''}`.trim() +
+                     `, ${locationData.town || ''}`.trim() +
+                     `, ${locationData.city || ''}`.trim() +
+                     `, ${locationData.province || ''}`.trim() +
+                     `, ${locationData.zipcode || ''}`.trim();
+
+// Build table
+if (finalizedOrders.length === 0) {
+  container.innerHTML = '<p>No finalized orders found.</p>';
+  totalDisplay.textContent = 'Grand Total: ₱0.00';
+} else {
+  let totalAmount = 0;
+
+  // HTML table (location is displayed above table for the page)
+  let html = `
+    ${locationString ? `<p><strong>Location:</strong> ${locationString}</p>` : ''}
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Product</th>
+          <th>UOM</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  finalizedOrders.forEach(item => {
+    html += `
+      <tr>
+        <td>${item.code}</td>
+        <td>${item.name}</td>
+        <td>${item.type}</td>
+        <td>${item.qty}</td>
+        <td>₱${item.price.toFixed(2)}</td>
+        <td>₱${item.total.toFixed(2)}</td>
+      </tr>
+    `;
+    totalAmount += item.total;
+  });
+
+  // Add grand total row
+  html += `<tr>
              <td colspan="5" style="text-align:right; font-weight:bold;">Grand Total</td>
              <td style="font-weight:bold;">₱${totalAmount.toFixed(2)}</td>
            </tr>`;
 
-      html += `</tbody></table>`;
-      container.innerHTML = html;
-      totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;
-    }
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+  totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;
+}
 
-    function exportToExcel() {
-      const table = document.getElementById('ordersTable');
-      const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
-      XLSX.writeFile(wb, "FinalizedOrders.xlsx");
-    }
+// Export table to Excel
+function exportToExcel() {
+  // Read location from localStorage again (always the latest saved)
+  const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
+
+  const locationString = `${locationData.house || ''} `.trim() +
+                         `,${locationData.building || ''}`.trim() +
+                         `, ${locationData.street || ''}`.trim() +
+                         `, ${locationData.barangay || ''}`.trim() +
+                         `, ${locationData.town || ''}`.trim() +
+                         `, ${locationData.city || ''}`.trim() +
+                         `, ${locationData.province || ''}`.trim() +
+                         `,${locationData.zipcode || ''}`.trim();
+
+  const table = document.getElementById('ordersTable');
+  const thead = table.querySelector('thead');
+
+  // Remove any previous location row
+  const existingLocationRow = thead.querySelector('.location-row');
+  if (existingLocationRow) existingLocationRow.remove();
+
+  // Insert location row above headers
+  if (locationString) {
+    const locationRow = document.createElement('tr');
+    locationRow.classList.add('location-row');
+    locationRow.innerHTML = `<td colspan="6" style="font-weight:bold; text-align:left;">Location: ${locationString}</td>`;
+    thead.insertBefore(locationRow, thead.firstChild);
+  }
+
+  // Export Excel
+  const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
+  XLSX.writeFile(wb, "FinalizedOrders.xlsx");
+}
+
+
   </script>
 </body>
 </html>

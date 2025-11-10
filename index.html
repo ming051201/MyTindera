@@ -97,7 +97,7 @@
 <!-- "TO HIDE LOCATION DETAILS" -->
       <div class="hidden" id="address-section">
 <!-- FULL NAME -->
-        <input type="text" class="txtbox-name" placeholder="Full Name">
+        <input type="text" id="name" class="txtbox-name" placeholder="Full Name">
 <!-- LOCATION TEXTBOX -->
         <div class="row-1">
           <div class="hse-no-field">
@@ -143,9 +143,33 @@
   </script>
   <!-- TO PROCEED TO ORDERLIST -->
   <script>
-    function goToOrderList() {
-      window.location.href = "order-list.html"
-    }
+// Navigate to order list
+function goToOrderList() {
+  window.location.href = "order-list.html";
+}
+
+// When finalizing order
+// index.html script
+function saveLocation() {
+  const locationData = {
+    house: document.getElementById('house').value,
+    building: document.getElementById('building').value,
+    street: document.getElementById('street').value,
+    barangay: document.getElementById('barangay').value,
+    town: document.getElementById('town/district').value,
+    city: document.getElementById('city/municipality').value,
+    province: document.getElementById('province').value,
+    zipcode: document.getElementById('zipcode').value
+  };
+  localStorage.setItem('locationData', JSON.stringify(locationData));
+}
+
+// Add event listener to all location textboxes
+const inputs = document.querySelectorAll(
+  '#house, #building, #street, #barangay, #town\\/district, #city\\/municipality, #province, #zipcode'
+);
+inputs.forEach(input => input.addEventListener('keyup', saveLocation));
+
   </script>
 </body>
 </html>
