@@ -1,4 +1,3 @@
-// 🧾 Define all your product prices here
 const products = [
   { code: "10001", name: "555 SARDINES IN TOMATO SAUCE EOE 155G", price_pc: 24.40, price_cs: 2414.80},
   { code: "10002", name: "555 SARDINES IN TOMATO SAUCE WITH CHILI 155G", price_pc: 24.40, price_cs: 2412.30},
@@ -100,7 +99,6 @@ const products = [
   { code: "10098", name: "CREAMSILK CONDITIONER HAIRFALL DEFENSE (GREEN) 13ML 12S", price_pc: 77.50, price_cs: 1842.00},
   { code: "10099", name: "CREAMSILK CONDITIONER HAIRFALL DEFENSE (GREEN) 22ML 12S", price_pc: 110.80, price_cs: 2622.50},
   { code: "10100", name: "CREAMSILK CONDITIONER STANDOUT STRAIGHT (PINK) 13ML 12S", price_pc: 77.50, price_cs: 1842.00},
-  
   { code: "10101", name: "CREAMSILK CONDITIONER STANDOUT STRAIGHT (PINK) 22ML 12S", price_pc: 110.80, price_cs: 2622.50},
   { code: "10102", name: "DATU PUTI SOY SAUCE SAKTO 60ML 6S", price_pc: 26.20, price_cs: 610.10},
   { code: "10103", name: "DATU PUTI SOY SAUCE (SUP) 200ML", price_pc: 10.30, price_cs: 609.80},
@@ -201,7 +199,6 @@ const products = [
   { code: "10198", name: "HERMANO SUGAR REFINED 500G", price_pc: 43.90, price_cs: 4344.70},
   { code: "10199", name: "HERMANO SUGAR PREMIUM RAW 1KG", price_pc: 84.90, price_cs: 4200.50},
   { code: "10200", name: "HERMANO SUGAR PREMIUM RAW 500G", price_pc: 42.60, price_cs: 4214.00},
-
   { code: "10201", name: "HOKKAIDO MACKEREL IN NATURAL OIL 155G", price_pc: 36.90, price_cs: 3659.40},
   { code: "10202", name: "HUNT'S PORK & BEANS ORIGINAL CANNED 175G", price_pc: 24.20, price_cs: 1145.70},
   { code: "10203", name: "HUNT'S PORK & BEANS ORIGINAL CANNED 230G", price_pc: 33.40, price_cs: 1586.10},
@@ -302,7 +299,6 @@ const products = [
   { code: "10298", name: "MR. HAT GULAMAN FLAVORED JELLY POWDER COFFEE 25G 10S", price_pc: 134.20, price_cs: 1319.80},
   { code: "10299", name: "MR. HAT GULAMAN FLAVORED JELLY POWDER STRAWBERRY 25G 10S", price_pc: 141.70, price_cs: 1391.30},
   { code: "10300", name: "MR. HAT GULAMAN UNFLAVORED JELLY POWDER WHITE 25G 10S", price_pc: 133.30, price_cs: 1319.80},
-
   { code: "10301", name: "NESCAFE COFFEE 3-IN-1 CREAMY LATTE TWIN PACK 40G 10S", price_pc: 142.00, price_cs: 2812.70},
   { code: "10302", name: "NESCAFE COFFEE 3-IN-1 CREAMY WHITE TWIN PACK 40G 10S", price_pc: 142.00, price_cs: 2812.70},
   { code: "10303", name: "NESCAFE COFFEE 3-IN-1 ORIGINAL TWIN PACK 40G 10S", price_pc: 141.00, price_cs: 2804.50},
@@ -403,7 +399,6 @@ const products = [
   { code: "10398", name: "SAN MARINO CORNED TUNA EOC 85G", price_pc: 29.60, price_cs: 1408.70},
   { code: "10399", name: "SAN MARINO CORNED TUNA EOC 150G", price_pc: 38.10, price_cs: 1814.60},
   { code: "10400", name: "SAN MARINO CORNED TUNA EOC 180G", price_pc: 47.10, price_cs: 2239.10}, 
-
   { code: "10401", name: "SAN MARINO CHILI CORNED TUNA EOC 85G", price_pc: 29.60, price_cs: 1408.70},
   { code: "10402", name: "SAN MARINO CHILI CORNED TUNA EOC 100G", price_pc: 29.50, price_cs: 1397.30}, 
   { code: "10403", name: "SAN MARINO CHILI CORNED TUNA EOC 150G", price_pc: 38.10, price_cs: 1814.60}, 
@@ -504,7 +499,6 @@ const products = [
   { code: "10498", name: "WILKINS PURE PURIFIED WATER", price_pc: 17.30, price_cs: 203.70}, 
   { code: "10499", name: "WILKINS PURE PURIFIED WATER", price_pc: 10.80, price_cs: 254.10}, 
   { code: "10500", name: "WOW! ULAM ADOBO 155G", price_pc: 22.20, price_cs: 1050.60},
-
   { code: "10501", name: "WOW! ULAM AFRITADA 155G", price_pc: 22.10, price_cs: 1049.30},
   { code: "10502", name: "WOW! ULAM MECHADO 155G", price_pc: 22.20, price_cs: 1050.60},
   { code: "10503", name: "NISSIN YAKISOBA CHICKEN SPICY 59G", price_pc: 11.60, price_cs: 825.60},
@@ -605,7 +599,6 @@ const products = [
   { code: "10598", name: "PALMOLIVE NATURALS SOAP ENERGIZING GLOW 55G 6S+1", price_pc: 93.00, price_cs: 1096.40},
   { code: "10599", name: "PALMOLIVE NATURALS SHAMPOO AND CONDITIONER ULTRA SMOOTH ALOE VERA 15ML 6S", price_pc: 30.60, price_cs: 2203.20},
   { code: "10600", name: "PALMOLIVE NATURALS SHAMPOO AND CONDITIONER INTENSIVE MOISTURE COCONUT CREAM 15ML 6S", price_pc: 30.60, price_cs: 2203.20},
-
   { code: "10601", name: "TANDUAY RHUM LIGHT 375ML", price_pc: 55.10, price_cs: 1322.00},
   { code: "10602", name: "TANDUAY RHUM LIGHT 750ML", price_pc: 108.20, price_cs: 1297.50},
   { code: "10603", name: "TANDUAY RHUM LIGHT 1L", price_pc: 141.10, price_cs: 1692.20},
@@ -706,7 +699,6 @@ const products = [
   { code: "10698", name: "SURF POWDER DETERGENT ACTIVE CLEAN PURPLE BLOOMS (PURPLE) 65G 6S+1", price_pc: 38.60, price_cs: 1508.20},
   { code: "10699", name: "SURF POWDER DETERGENT ACTIVE CLEAN ANTIBACTERIAL (WHITE) 60G 6S", price_pc: 38.60, price_cs: 1809.70},
   { code: "10700", name: "SURF LIQUID DETERGENT ULTRA POWER LIQUID CHERRY BLOSSOM (RED) 64ML 6S", price_pc: 42.30, price_cs: 1952.80},
-
   { code: "10701", name: "SURF LIQUID DETERGENT ULTRA POWER LIQUID ROSE FRESH (PINK) 64ML 6S", price_pc: 41.70, price_cs: 1952.80},
   { code: "10702", name: "SURF LIQUID DETERGENT ULTRA POWER LIQUID ROSE FRESH (PINK) 64ML 6S+1", price_pc: 0, price_cs: 0},
   { code: "10703", name: "SURF POWDER DETERGENT ACTIVE CLEAN ROSE FRESH (PINK) LABA DOBLE 130G 6S", price_pc: 78.40, price_cs: 1806.10},
@@ -807,30 +799,22 @@ const products = [
   { code: "10798", name: "UFC GARDEN FRESH MUSHROOM PIECES & STEMS EOE 198G", price_pc: 0, price_cs: 0},
   { code: "10799", name: "UFC GOLDEN FIESTA PALM OIL STAND UP POUCH 500ML", price_pc: 75.60, price_cs: 1751.40},
   { code: "10800", name: "UFC GOLDEN FIESTA CANOLA OIL PET 1L", price_pc: 141.50, price_cs: 1664.30},
-
   { code: "10801", name: "UFC FRESH SELECTIONS WHOLE CORN KERNELS EOE 185G", price_pc: 0, price_cs: 0},
   { code: "10802", name: "UFC BANANA CATSUP TAMIS ANGAS (HOT & SPICY) BOTTLE 320G", price_pc: 32.40, price_cs: 749.40},
   { code: "10803", name: "UFC BANANA CATSUP 1KG", price_pc: 68.40, price_cs: 803.30},
   { code: "10804", name: "UFC TOMATO SAUCE FILIPINO STYLE 1KG", price_pc: 83.60, price_cs: 967.50},
-
-
-
-
 ];
 
-// 🧹 Clears all quantity boxes
 function clearOrders() {
   document.querySelectorAll('.qty-box').forEach(box => box.value = 0);
   updateOrderSummary();
   alert("All quantities cleared!");
 }
 
-
 function toggleDropdown() {
   document.getElementById("dropdownMenu").classList.toggle("show");
 }
 
-// Close dropdown when clicking outside
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
     const dropdown = document.getElementById("dropdownMenu");
@@ -849,25 +833,20 @@ function filterCategory(category) {
       product.style.display = "none";
     }
   });
-
-  // Close dropdown after selecting
   document.getElementById("dropdownMenu").classList.remove("show");
 }
 
-// 🪟 Show modal
 function showOrderSummary() {
   document.getElementById('order-summary-overlay').style.display = 'flex';
   document.body.classList.add('modal-open');
   updateOrderSummary();
 }
 
-// 🪟 Close modal
 function closeSummary() {
   document.getElementById('order-summary-overlay').style.display = 'none';
   document.body.classList.remove('modal-open');
 }
 
-// 📊 Update Order Summary
 function updateOrderSummary() {
   const content = document.getElementById('order-summary-content');
   const totalEl = document.getElementById('order-summary-total');
@@ -911,17 +890,14 @@ function updateOrderSummary() {
   totalEl.textContent = `Total: ₱${total.toFixed(2)}`;
 }
 
-// 🧠 Live update
 document.querySelectorAll('.qty-box').forEach(box => {
   box.addEventListener('input', updateOrderSummary);
 });
 
-// 🧭 Close modal by clicking outside
 document.getElementById('order-summary-overlay').addEventListener('click', e => {
   if (e.target.id === 'order-summary-overlay') closeSummary();
 });
 
-// ✅ SEARCH + PAGINATION (WORKS WITH SEARCH)
 const productsPerPage = 100;
 const allProducts = Array.from(document.querySelectorAll('.product'));
 const paginationContainer = document.getElementById('pagination');
@@ -930,7 +906,6 @@ const searchBox = document.querySelector('.search-box');
 let filteredProducts = [...allProducts];
 let currentPage = 1;
 
-// 🔍 SEARCH FUNCTION — updates pagination
 searchBox.addEventListener('input', function () {
   const searchTerm = this.value.toLowerCase().trim();
 
@@ -944,7 +919,6 @@ searchBox.addEventListener('input', function () {
   displayProducts(currentPage);
 });
 
-// 📄 DISPLAY PRODUCTS PER PAGE
 function displayProducts(page) {
   allProducts.forEach(prod => prod.style.display = 'none');
   const start = (page - 1) * productsPerPage;
@@ -954,7 +928,6 @@ function displayProducts(page) {
   updatePaginationButtons(page);
 }
 
-// 🧭 UPDATE PAGINATION BUTTONS
 function updatePaginationButtons(activePage) {
   paginationContainer.innerHTML = '';
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -997,15 +970,12 @@ function updatePaginationButtons(activePage) {
   paginationContainer.appendChild(nextBtn);
 }
 
-// 🚀 INITIALIZE PAGE
 displayProducts(currentPage);
 
-// ⬅️ Go back button
 function goBack() {
   window.history.back();
 }
 
-// ✅ FINALIZE ORDER (saves both PC + CS)
 function finalizeOrder() {
   const orders = [];
 
@@ -1032,7 +1002,6 @@ function finalizeOrder() {
 }
 
 window.addEventListener("load", () => {
-  // Get all <img> elements inside your product list
   const productImages = document.querySelectorAll(".product");
 
   productImages.forEach(img => {

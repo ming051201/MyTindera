@@ -4,101 +4,125 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="max-age=31536000, must-revalidate">
-
   <link rel="icon" href="app-logo.png" type="image/png">
   <link rel="apple-touch-icon" href="app-logo.png">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
-/*___________________________________________________________________________________________________ BACKGROUND */
-/* MAIN BACKGROUND */
-    body {
-      margin: 0; padding: 0; background-color: #ccc; display: flex;
-      justify-content: center; align-items: center; height: 100vh; 
-      font-family: 'Open Sans', sans-serif; overflow-x: hidden;
+    body { 
+      margin: 0; 
+      padding: 0; 
+      background-color: #ccc; 
+      display: flex;
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+      font-family: 'Open Sans', sans-serif; 
+      overflow-x: hidden;
     }
-/* MOBILE BG RESPONSIVENESS */
-    @media (max-width: 500px) {
+
+    @media (max-width: 500px) { 
       body {
-        background-color: white;
-      }
+        background-color: white;}
       .mobile-container {
-        width: 100%; height: 100%; border-radius: 0; border: none;
+        width: 100%; 
+        height: 100%; 
+        border-radius: 0; 
+        border: none;}
       }
+
+    .mobile-container { 
+      width: 375px; 
+      height: 100vh; 
+      background-color: white;
+      border: 0px solid #000; 
+      border-radius: 20px; 
+      display: flex;
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center;
+      gap: clamp(2px, 2vh, 4px); 
+      padding: 20px;
+      box-sizing: border-box;
     }
-/* MOBILE PHONE FRAME */
-    .mobile-container {
-      width: 375px; height: 100vh; background-color: white;
-      border: 0px solid #000; border-radius: 20px; display: flex;
-      flex-direction: column; justify-content: center; align-items: center;
-      gap: clamp(2px, 2vh, 4px); padding: 20px;box-sizing: border-box;
-    }
-/*___________________________________________________________________________________________________ BACKGROUND */
-/*___________________________________________________________________________________________________ REGISTRATION PAGE */
-/* BRAND LOGO */
-    .logo1 img {
+
+    .logo1 img { 
       width: clamp(240px, 20vw, 300px);
       height: auto;
       display: block;
       margin: 0 auto;
     }
-/* REMOVES VISIBILITY FOR CLASS="BTN-TOGGLE" */
-    .hidden {
+
+    .hidden { 
       display: none !important;
     }
-/* LOCATION BUTTON */
-    .btn-toggle {
-      background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
-      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px; border: 1px solid #aaa;
-      cursor: pointer; transition: 0.3s; width: 100%; margin: 10px auto; display: block;
+
+    .btn-toggle { 
+      background-color: #fff; 
+      color: black; 
+      font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); 
+      border-radius: 8px; 
+      border: 1px solid #aaa;
+      cursor: pointer; 
+      transition: 0.3s; 
+      width: 100%; 
+      margin: 10px auto; 
+      display: block;
+    }
+      .btn-toggle:hover { 
+        background-color: rgb(230, 230, 230);
+      }
+
+    .txtbox-name, .txtbox-hse-no, .txtbox-bldg, .txtbox-str, .txtbox-brgy,
+    .txtbox-twn, .txtbox-city, .txtbox-prov, .txtbox-zip { 
+      font-size: 16px; 
+      padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
+      border-radius: 8px; 
+      border: 1px solid #aaa; 
+      width: 100%; 
+      box-sizing: border-box;
+      margin-bottom: 5px; 
+      height: 20px;
     }
 
-    .btn-toggle:hover {
-      background-color: rgb(230, 230, 230);
+    .row-1, .row-2, .row-3 {
+      display: flex; 
+      gap: 5px; 
+      width: 100%;}
+      .hse-no-field { flex: 1.47; }
+      .bldg-field { flex: 3; 
+      }
+
+    .btn-enter { 
+      background-color: #fff; 
+      color: black; 
+      font-size: clamp(5px, 3.5vw, 10px);
+      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); 
+      border-radius: 8px;
+      border: 1px solid #aaa; 
+      cursor: pointer; 
+      transition: 0.3s; 
+      width: 30%; 
+      margin: 5px auto 0 auto; 
+      display: block; 
     }
-/* LOCATION TEXT BOX STYLE */
-    .txtbox-name, .txtbox-hse-no, .txtbox-bldg, .txtbox-str, .txtbox-brgy,
-    .txtbox-twn, .txtbox-city, .txtbox-prov, .txtbox-zip {
-      font-size: 16px; padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
-      border-radius: 8px; border: 1px solid #aaa; width: 100%; box-sizing: border-box;
-      margin-bottom: 5px; height: 20px; 
-    }
-/* LAY OUT FOR TEXTBOX SIZES */
-    .row-1, .row-2, .row-3 { 
-      display: flex; gap: 5px; width: 100%;
-    }
-    .hse-no-field { flex: 1.47; }
-    .bldg-field { flex: 3; }
-/* ENTER BUTTON */
-    .btn-enter {
-      background-color: #fff; color: black; font-size: clamp(5px, 3.5vw, 10px);
-      padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px); border-radius: 8px;
-      border: 1px solid #aaa; cursor: pointer; transition: 0.3s; width: 30%; 
-      margin: 5px auto 0 auto; display: block; 
-    }
-    .btn-enter:hover {
-      background-color: rgb(230, 230, 230);
-    }
-/*___________________________________________________________________________________________________ REGISTRATION PAGE */
+      .btn-enter:hover {
+        background-color: rgb(230, 230, 230);
+      }
   </style>
 </head>
 <body>
   <div class="mobile-container">
-<!-- BRAND NAME & TAGLINE -->
-    <div class="logo1">
+
+    <div class="logo1"> 
       <img src="logo1.png" alt="My Logo">
     </div>
-<!-- INPUTTING PERSONAL INFORMATION GROUP -->
-    <div class="form">
-<!-- ORDER BUTTON -->
-      <button type="button" class="btn-toggle" onclick="toggleAddress()">ORDER NOW</button>
-<!-- "TO HIDE LOCATION DETAILS" -->
-      <div class="hidden" id="address-section">
-<!-- FULL NAME -->
-        <input type="text" id="name" class="txtbox-name" placeholder="Full Name">
-<!-- LOCATION TEXTBOX -->
+
+    <div class="form"> 
+
+      <button type="button" class="btn-toggle" onclick="toggleAddress()">ORDER NOW</button>      
+      <div class="hidden" id="address-section"> 
+        <input type="text" id="name" class="txtbox-name" placeholder="Full Name"> 
+
         <div class="row-1">
           <div class="hse-no-field">
             <input type="text" id="house" class="txtbox-hse-no" placeholder="Hse No.">
@@ -107,6 +131,7 @@
             <input type="text" id="building" class="txtbox-bldg" placeholder="Building/Tower/Subdivision (if applicable)"> 
           </div>   
         </div>
+
         <div class="row-2">
           <div class="str-field">
             <input type="text" id="street" class="txtbox-str" placeholder="Street Name">
@@ -118,6 +143,7 @@
             <input type="text" id="town/district" class="txtbox-twn" placeholder="Town/District">
           </div>  
         </div>
+
         <div class="row-3">
           <div class="city-field">
             <input type="text" id="city/municipality" class="txtbox-city" placeholder="City/Municipality"> 
@@ -127,49 +153,41 @@
           </div>
           <div class="zip-field">
             <input type="text" id="zipcode" class="txtbox-zip" placeholder="Zipcode">
-          </div>
-<!-- SHOP NOW (PROCEED TO ORDER LIST) BUTTON -->
+          </div>         
         </div>
-          <button class="btn-enter" onclick="goToOrderList()">SHOP NOW</button> 
-        </div>
+
+        <button class="btn-enter" onclick="goToOrderList()">SHOP NOW</button> 
       </div>
     </div>
-<!-- TOGGLES VISIBILITY OF LOCATION DETAILS -->
+  </div>
   <script>
-    function toggleAddress() {
+    function toggleAddress() { 
       const section = document.getElementById("address-section");
       section.classList.toggle("hidden");
     }
-  </script>
-  <!-- TO PROCEED TO ORDERLIST -->
-  <script>
-// Navigate to order list
-function goToOrderList() {
-  window.location.href = "order-list.html";
-}
+  
+    function goToOrderList() { 
+      window.location.href = "order-list.html";
+    }
 
-// When finalizing order
-// index.html script
-function saveLocation() {
-  const locationData = {
-    house: document.getElementById('house').value,
-    building: document.getElementById('building').value,
-    street: document.getElementById('street').value,
-    barangay: document.getElementById('barangay').value,
-    town: document.getElementById('town/district').value,
-    city: document.getElementById('city/municipality').value,
-    province: document.getElementById('province').value,
-    zipcode: document.getElementById('zipcode').value
-  };
-  localStorage.setItem('locationData', JSON.stringify(locationData));
-}
+    function saveLocation() { 
+      const locationData = {
+        house: document.getElementById('house').value,
+        building: document.getElementById('building').value,
+        street: document.getElementById('street').value,
+        barangay: document.getElementById('barangay').value,
+        town: document.getElementById('town/district').value,
+        city: document.getElementById('city/municipality').value,
+        province: document.getElementById('province').value,
+        zipcode: document.getElementById('zipcode').value};
 
-// Add event listener to all location textboxes
-const inputs = document.querySelectorAll(
-  '#house, #building, #street, #barangay, #town\\/district, #city\\/municipality, #province, #zipcode'
-);
-inputs.forEach(input => input.addEventListener('keyup', saveLocation));
+    localStorage.setItem('locationData', JSON.stringify(locationData));
+  }
 
+    const inputs = document.querySelectorAll( 
+      '#house, #building, #street, #barangay, #town\\/district, #city\\/municipality, #province, #zipcode');
+
+    inputs.forEach(input => input.addEventListener('keyup', saveLocation)); 
   </script>
 </body>
 </html>

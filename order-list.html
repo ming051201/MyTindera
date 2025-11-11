@@ -14,21 +14,21 @@
       <img src="logo2.png" alt="My Website Logo" class="logo2">
       <input type="text" class="search-box" placeholder="Search products..." />
       <div class="btn-order-group">
-       <div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">CATEGORY ▼</button>
-    <div id="dropdownMenu" class="dropdown-content">
-      <a href="#" onclick="filterCategory('all')">ALL</a>
-      <a href="#" onclick="filterCategory('can')">CANNED & PACK FOOD</a>
-      <a href="#" onclick="filterCategory('dry')">DRY GOODS</a>
-      <a href="#" onclick="filterCategory('snack')">SNACK</a>
-      <a href="#" onclick="filterCategory('beverage')">BEVERAGE</a>
-      <a href="#" onclick="filterCategory('condiments')">CONDIMENTS</a>
-      <a href="#" onclick="filterCategory('dairy')">DAIRY</a>
-      <a href="#" onclick="filterCategory('household')">HOUSEHOLD</a>
-      <a href="#" onclick="filterCategory('health')">HEALTH & HYGIENE</a>
-      <a href="#" onclick="filterCategory('babies')">BABIES' CARE</a>
-    </div>
-  </div>
+        <div class="dropdown">
+          <button onclick="toggleDropdown()" class="dropbtn">CATEGORY ▼</button>
+            <div id="dropdownMenu" class="dropdown-content">
+              <a href="#" onclick="filterCategory('all')">ALL</a>
+              <a href="#" onclick="filterCategory('can')">CANNED & PACK FOOD</a>
+              <a href="#" onclick="filterCategory('dry')">DRY GOODS</a>
+              <a href="#" onclick="filterCategory('snack')">SNACK</a>
+              <a href="#" onclick="filterCategory('beverage')">BEVERAGE</a>
+              <a href="#" onclick="filterCategory('condiments')">CONDIMENTS</a>
+              <a href="#" onclick="filterCategory('dairy')">DAIRY</a>
+              <a href="#" onclick="filterCategory('household')">HOUSEHOLD</a>
+              <a href="#" onclick="filterCategory('health')">HEALTH & HYGIENE</a>
+              <a href="#" onclick="filterCategory('babies')">BABIES' CARE</a>
+            </div>
+        </div>
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
         <button class="btn-basket" onclick="showOrderSummary()">BASKET</button>
         <button class="btn-finalize" onclick="finalizeOrder()">FINALIZE</button>
@@ -36,20 +36,20 @@
     </div>
 
 <!-- BASKET POPUP -->
-<div id="order-summary-overlay" class="modal-overlay" aria-hidden="true">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="order-summary-title">
-    <h2 id="order-summary-title">BASKET</h2>
+    <div id="order-summary-overlay" class="modal-overlay" aria-hidden="true">
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="order-summary-title">
+        <h2 id="order-summary-title">BASKET</h2>
 
-    <div id="order-summary-content" class="order-summary-content">
-      <p>No items yet.</p>
-    </div>
+        <div id="order-summary-content" class="order-summary-content">
+          <p>No items yet.</p>
+        </div>
 
-    <div class="modal-footer">
-      <p id="order-summary-total">Total: ₱0.00</p>
-      <button class="modal-close" onclick="closeSummary()">Close</button>
+        <div class="modal-footer">
+          <p id="order-summary-total">Total: ₱0.00</p>
+          <button class="modal-close" onclick="closeSummary()">Close</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 <!-- PRODUCT LIST -->
 <!-- 10001 -->
@@ -2803,7 +2803,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10126 -->
 <div class="product" data-category="condiments">
   <img src="10126.png" alt="10126" />
@@ -3354,7 +3353,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10151 -->
 <div class="product" data-category="household">
   <img src="10151.png" alt="10151" />
@@ -3400,7 +3398,7 @@
   </div>
 </div>
 <!-- 10153 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10153.png" alt="10153" />
   <div class="product-details">
     <div class="product-info">
@@ -3422,7 +3420,7 @@
   </div>
 </div>
 <!-- 10154 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10154.png" alt="10154" />
   <div class="product-details">
     <div class="product-info">
@@ -3444,7 +3442,7 @@
   </div>
 </div>
 <!-- 10155 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10155.png" alt="10155" />
   <div class="product-details">
     <div class="product-info">
@@ -3466,7 +3464,7 @@
   </div>
 </div>
 <!-- 10156 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10156.png" alt="10156" />
   <div class="product-details">
     <div class="product-info">
@@ -3488,7 +3486,7 @@
   </div>
 </div>
 <!-- 10157 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10157.png" alt="10157" />
   <div class="product-details">
     <div class="product-info">
@@ -3510,7 +3508,7 @@
   </div>
 </div>
 <!-- 10158 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10158.png" alt="10158" />
   <div class="product-details">
     <div class="product-info">
@@ -3532,7 +3530,7 @@
   </div>
 </div>
 <!-- 10159 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10159.png" alt="10159" />
   <div class="product-details">
     <div class="product-info">
@@ -3554,7 +3552,7 @@
   </div>
 </div>
 <!-- 10160 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10160.png" alt="10160" />
   <div class="product-details">
     <div class="product-info">
@@ -3576,7 +3574,7 @@
   </div>
 </div>
 <!-- 10161 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10161.png" alt="10161" />
   <div class="product-details">
     <div class="product-info">
@@ -3598,7 +3596,7 @@
   </div>
 </div>
 <!-- 10162 -->
-<div class="product">
+<div class="product" data-category="beverage">
   <img src="10162.png" alt="10162" />
   <div class="product-details">
     <div class="product-info">
@@ -3905,7 +3903,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10176 -->
 <div class="product" data-category="snack">
   <img src="10176.png" alt="10176" />
@@ -5006,7 +5003,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10226 -->
 <div class="product" data-category="household">
   <img src="10226.png" alt="10226" />
@@ -5557,7 +5553,6 @@
     </div>
   </div>
 </div>
- 
 <!-- 10251 -->
 <div class="product" data-category="dairy">
   <img src="10251.png" alt="10251" />
@@ -6108,7 +6103,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10276 -->
 <div class="product" data-category="condiments">
   <img src="10276.png" alt="10276" />
@@ -6659,7 +6653,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10301 -->
 <div class="product" data-category="beverage">
   <img src="10301.png" alt="10301" />
@@ -7210,7 +7203,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10326 -->
 <div class="product" data-category="dry">
   <img src="10326.png" alt="10326" />
@@ -7761,7 +7753,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10351 -->
 <div class="product" data-category="dry">
   <img src="10351.png" alt="10351" />
@@ -8312,7 +8303,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10376 -->
 <div class="product" data-category="beverage">
   <img src="10376.png" alt="10376" />
@@ -8863,7 +8853,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10401 -->
 <div class="product" data-category="can">
   <img src="10401.png" alt="10401" />
@@ -9414,7 +9403,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10426 -->
 <div class="product" data-category="household">
   <img src="10426.png" alt="10426" />
@@ -9965,7 +9953,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10451 -->
 <div class="product" data-category="household">
   <img src="10451.png" alt="10451" />
@@ -10516,7 +10503,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10476 -->
 <div class="product" data-category="health">
   <img src="10476.png" alt="10476" />
@@ -11067,7 +11053,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10501 --> 
 <div class="product" data-category="can">
   <img src="10501.png" alt="10501" />
@@ -11618,7 +11603,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10526 -->
 <div class="product" data-category="household">
   <img src="10526.png" alt="10526" />
@@ -12169,7 +12153,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10551 -->
 <div class="product" data-category="household">
   <img src="10551.png" alt="10551" />
@@ -12720,7 +12703,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10576 -->
 <div class="product" data-category="health">
   <img src="10576.png" alt="10576" />
@@ -13271,7 +13253,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10601 -->
 <div class="product" data-category="beverage">
   <img src="10601.png" alt="10601" />
@@ -13822,7 +13803,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10626 -->
 <div class="product" data-category="health">
   <img src="10626.png" alt="10626" />
@@ -14373,7 +14353,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10651 -->
 <div class="product" data-category="can">
   <img src="10651.png" alt="10651" />
@@ -14924,7 +14903,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10676 -->
 <div class="product" data-category="household">
   <img src="10676.png" alt="10676" />
@@ -15475,7 +15453,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10701 -->
 <div class="product" data-category="household">
   <img src="10701.png" alt="10701" />
@@ -16026,7 +16003,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10726 -->
 <div class="product" data-category="health">
   <img src="10726.png" alt="10726" />
@@ -16577,7 +16553,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10751 -->
 <div class="product" data-category="household">
   <img src="10751.png" alt="10751" />
@@ -17128,7 +17103,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10776 -->
 <div class="product" data-category="household">
   <img src="10776.png" alt="10776" />
@@ -17679,7 +17653,6 @@
     </div>
   </div>
 </div>
-
 <!-- 10801 -->
 <div class="product" data-category="can">
   <img src="10801.png" alt="10801" />
@@ -17769,14 +17742,10 @@
   </div>
 </div>
 
-
-
-<div id="pagination" class="pagination"></div>
-
-</div> <!-- end mobile-container -->
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-<script src="order-list.js"></script>
-
+    <div id="pagination" class="pagination"></div>
+  </div> <!-- end mobile-container -->
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="order-list.js"></script>
 </body>
 </html>
 

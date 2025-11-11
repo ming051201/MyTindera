@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finalized Orders</title>
+  <title>ORDER RECEIPT</title>
   <style>
-    body {
+    body { 
       font-family: 'Open Sans', sans-serif;
       background: #f5f5f5;
       margin: 0;
@@ -15,7 +15,7 @@
       align-items: center;
     }
 
-    .header {
+    .header { 
       width: 100%;
       max-width: 375px;
       background-color: rgb(0,51,102);
@@ -25,7 +25,7 @@
       position: relative;
     }
 
-    .back-btn {
+    .back-btn { 
       position: absolute;
       left: 10px;
       top: 12px;
@@ -36,7 +36,7 @@
       cursor: pointer;
     }
 
-    .container {
+    .container { 
       width: 100%;
       max-width: 325px;
       background: white;
@@ -48,30 +48,30 @@
       max-height: 70vh;
     }
 
-    .table-wrapper {
+    .table-wrapper { 
       flex: 1;
       overflow-y: auto;
       padding: 10px;
     }
 
-    table {
+    table { 
       width: 100%;
       border-collapse: collapse;
       text-align: center;
     }
 
-    th, td {
+    th, td { 
       border: 1px solid #ccc;
       padding: 5px;
       font-size: 10px;
     }
 
-    th {
+    th { 
       background-color: rgb(0,51,102);
       color: white;
     }
 
-    .total-sticky {
+    .total-sticky { 
       position: sticky;
       bottom: 0;
       background: rgb(0,51,102);
@@ -83,7 +83,7 @@
       border-radius: 0 0 10px 10px;
     }
 
-    .btn-export {
+    .btn-export { 
       background: rgb(0,51,102);
       color: white;
       border: none;
@@ -93,7 +93,7 @@
       cursor: pointer;
     }
 
-    .btn-export:hover {
+    .btn-export:hover { 
       background: rgb(20,70,130);
     }
   </style>
@@ -113,58 +113,55 @@
 
   <button class="btn-export" onclick="exportToExcel()">Download Excel</button>
 
-  <!-- SheetJS Library -->
+  
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
   <script>
- function goBack() {
-  window.history.back();
-}
+    function goBack() {
+      window.history.back();
+    }
 
-const container = document.getElementById('orderContainer');
-const totalDisplay = document.getElementById('grandTotal');
+    const container = document.getElementById('orderContainer');
+    const totalDisplay = document.getElementById('grandTotal');
 
-// Retrieve finalized orders from localStorage
-const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
+    const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
+    const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
 
-// Retrieve saved location from localStorage
-const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
 
-// Build formatted location string
-let locationString = `${locationData.house || ''}`.trim() + 
-                     `,${locationData.building || ''}`.trim() +
-                     `, ${locationData.street || ''}`.trim() +
-                     `, ${locationData.barangay || ''}`.trim() +
-                     `, ${locationData.town || ''}`.trim() +
-                     `, ${locationData.city || ''}`.trim() +
-                     `, ${locationData.province || ''}`.trim() +
-                     `, ${locationData.zipcode || ''}`.trim();
+    let locationString = `${locationData.house || ''}`.trim() + 
+                         `,${locationData.building || ''}`.trim() +
+                         `, ${locationData.street || ''}`.trim() +
+                         `, ${locationData.barangay || ''}`.trim() +
+                         `, ${locationData.town || ''}`.trim() +
+                         `, ${locationData.city || ''}`.trim() +
+                         `, ${locationData.province || ''}`.trim() +
+                         `, ${locationData.zipcode || ''}`.trim();
 
-// Build table
-if (finalizedOrders.length === 0) {
-  container.innerHTML = '<p>No finalized orders found.</p>';
-  totalDisplay.textContent = 'Grand Total: ₱0.00';
-} else {
-  let totalAmount = 0;
 
-  // HTML table (location is displayed above table for the page)
-  let html = `
-    ${locationString ? `<p><strong>Location:</strong> ${locationString}</p>` : ''}
-    <table id="ordersTable">
-      <thead>
-        <tr>
-          <th>Code</th>
-          <th>Product</th>
-          <th>UOM</th>
-          <th>Qty</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
+    if (finalizedOrders.length === 0) {
+      container.innerHTML = '<p>No finalized orders found.</p>';
+      totalDisplay.textContent = 'Grand Total: ₱0.00';
+    } else {
+      let totalAmount = 0;
+
+ 
+    let html = `
+      ${locationString ? `<p><strong>Location:</strong> ${locationString}</p>` : ''}
+      <table id="ordersTable">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Product</th>
+            <th>UOM</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
       <tbody>
-  `;
+    `;
 
-  finalizedOrders.forEach(item => {
+      finalizedOrders.forEach(item => {
     html += `
       <tr>
         <td>${item.code}</td>
@@ -175,55 +172,45 @@ if (finalizedOrders.length === 0) {
         <td>₱${item.total.toFixed(2)}</td>
       </tr>
     `;
-    totalAmount += item.total;
-  });
+    totalAmount += item.total;});
 
-  // Add grand total row
-  html += `<tr>
+
+    html += `<tr>
              <td colspan="5" style="text-align:right; font-weight:bold;">Grand Total</td>
              <td style="font-weight:bold;">₱${totalAmount.toFixed(2)}</td>
-           </tr>`;
+             </tr>`;
 
-  html += `</tbody></table>`;
-  container.innerHTML = html;
-  totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;
-}
+    html += `</tbody></table>`;
+      container.innerHTML = html;
+      totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;}
 
-// Export table to Excel
-function exportToExcel() {
-  // Read location from localStorage again (always the latest saved)
-  const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
+    function exportToExcel() {
+      const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
 
-  const locationString = `${locationData.house || ''} `.trim() +
-                         `,${locationData.building || ''}`.trim() +
-                         `, ${locationData.street || ''}`.trim() +
-                         `, ${locationData.barangay || ''}`.trim() +
-                         `, ${locationData.town || ''}`.trim() +
-                         `, ${locationData.city || ''}`.trim() +
-                         `, ${locationData.province || ''}`.trim() +
-                         `,${locationData.zipcode || ''}`.trim();
+    const locationString = `${locationData.house || ''} `.trim() +
+                           `,${locationData.building || ''}`.trim() +
+                           `, ${locationData.street || ''}`.trim() +
+                           `, ${locationData.barangay || ''}`.trim() +
+                           `, ${locationData.town || ''}`.trim() +
+                           `, ${locationData.city || ''}`.trim() +
+                           `, ${locationData.province || ''}`.trim() +
+                           `,${locationData.zipcode || ''}`.trim();
 
-  const table = document.getElementById('ordersTable');
-  const thead = table.querySelector('thead');
+    const table = document.getElementById('ordersTable');
+    const thead = table.querySelector('thead');
+    const existingLocationRow = thead.querySelector('.location-row');
 
-  // Remove any previous location row
-  const existingLocationRow = thead.querySelector('.location-row');
-  if (existingLocationRow) existingLocationRow.remove();
+    if (existingLocationRow) existingLocationRow.remove();
 
-  // Insert location row above headers
-  if (locationString) {
-    const locationRow = document.createElement('tr');
-    locationRow.classList.add('location-row');
-    locationRow.innerHTML = `<td colspan="6" style="font-weight:bold; text-align:left;">Location: ${locationString}</td>`;
-    thead.insertBefore(locationRow, thead.firstChild);
+    if (locationString) {
+      const locationRow = document.createElement('tr');
+      locationRow.classList.add('location-row');
+      locationRow.innerHTML = `<td colspan="6" style="font-weight:bold; text-align:left;">Location: ${locationString}</td>`;
+      thead.insertBefore(locationRow, thead.firstChild);}
+
+    const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
+    XLSX.writeFile(wb, "FinalizedOrders.xlsx");
   }
-
-  // Export Excel
-  const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
-  XLSX.writeFile(wb, "FinalizedOrders.xlsx");
-}
-
-
   </script>
 </body>
 </html>
