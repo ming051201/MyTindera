@@ -805,37 +805,87 @@ const products = [
   { code: "10804", name: "UFC TOMATO SAUCE FILIPINO STYLE 1KG", price_pc: 83.60, price_cs: 967.50},
 ];
 
+//----------------- ORDERS -----------------
 function clearOrders() {
   document.querySelectorAll('.qty-box').forEach(box => box.value = 0);
   updateOrderSummary();
   alert("All quantities cleared!");
 }
 
-function toggleDropdown() {
-  document.getElementById("dropdownMenu").classList.toggle("show");
+//----------------- DROPDOWNS -----------------
+const brands = {
+  a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONOSO", "ALPINEe", "ANGEL", "ARGENTINA", "ARIEL"],
+  b: ["BEAR BRAND", "BENG-BENG", "BRAVO", "BREEZE", "BUTTER CREAM"],
+  c: ["CARE FREE", "CDO", "CENTURY TUNA","CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEAR MEN", "CLOSE UP", "COBRA", "COCA COLA", "COCO PANDAN", "COFFEE-MATE", "COLGATE", "COMBI", "CREAMSILK", "CRISPY FRY" ],
+  // Add all letters with brands
+};
+
+function toggleDropdown(menuId) {
+  // Close all dropdowns except the one clicked
+  document.querySelectorAll('.dropdown-content, .dropdown-content2, #subDropdownMenu').forEach(menu => {
+    if (menu.id !== menuId) menu.style.display = 'none';
+  });
+
+  const clickedMenu = document.getElementById(menuId);
+  clickedMenu.style.display = clickedMenu.style.display === 'block' ? 'none' : 'block';
+
+  // Hide sub-dropdown if main dropdown toggled
+  if (menuId !== "subDropdownMenu") document.getElementById("subDropdownMenu").style.display = "none";
 }
 
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    const dropdown = document.getElementById("dropdownMenu");
-    if (dropdown && dropdown.classList.contains('show')) {
-      dropdown.classList.remove('show');
-    }
+function showSubDropdown(letter, event) {
+  event.preventDefault();
+  const sub = document.getElementById("subDropdownMenu");
+  sub.innerHTML = ""; // Clear previous
+
+  if (brands[letter]) {
+    brands[letter].forEach(brand => {
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = brand;
+      a.onclick = () => {
+        filterBrand(brand);
+        sub.style.display = 'none'; // hide after selection
+      };
+      sub.appendChild(a);
+    });
+
+    // Simply show the sub-dropdown
+    sub.style.display = "block";
+  } else {
+    sub.style.display = "none";
   }
 }
 
-function filterCategory(category) {
+
+// Close dropdowns if clicked outside
+window.addEventListener('click', function(event) {
+  if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
+    document.querySelectorAll('.dropdown-content, .dropdown-content2').forEach(menu => {
+      menu.style.display = 'none';
+    });
+    document.getElementById("subDropdownMenu").style.display = "none";
+  }
+});
+
+
+//----------------- FILTER BRAND -----------------
+function filterBrand(brand) {
   const products = document.querySelectorAll(".product");
   products.forEach(product => {
-    if (category === "all" || product.dataset.category === category) {
+    if (brand === "all" || product.dataset.brand === brand) {
       product.style.display = "flex";
     } else {
       product.style.display = "none";
     }
   });
+
+  // Close dropdowns after selection
   document.getElementById("dropdownMenu").classList.remove("show");
+  document.getElementById("subDropdown").style.display = "none";
 }
 
+//----------------- ORDER SUMMARY -----------------
 function showOrderSummary() {
   document.getElementById('order-summary-overlay').style.display = 'flex';
   document.body.classList.add('modal-open');
@@ -898,6 +948,7 @@ document.getElementById('order-summary-overlay').addEventListener('click', e => 
   if (e.target.id === 'order-summary-overlay') closeSummary();
 });
 
+//----------------- PAGINATION & SEARCH -----------------
 const productsPerPage = 100;
 const allProducts = Array.from(document.querySelectorAll('.product'));
 const paginationContainer = document.getElementById('pagination');
@@ -908,13 +959,11 @@ let currentPage = 1;
 
 searchBox.addEventListener('input', function () {
   const searchTerm = this.value.toLowerCase().trim();
-
   filteredProducts = allProducts.filter(prod => {
     const code = prod.querySelector('h3').textContent.toLowerCase();
     const name = prod.querySelector('p').textContent.toLowerCase();
     return code.includes(searchTerm) || name.includes(searchTerm);
   });
-
   currentPage = 1;
   displayProducts(currentPage);
 });
@@ -972,13 +1021,13 @@ function updatePaginationButtons(activePage) {
 
 displayProducts(currentPage);
 
+//----------------- NAVIGATION -----------------
 function goBack() {
   window.history.back();
 }
 
 function finalizeOrder() {
   const orders = [];
-
   document.querySelectorAll('.product').forEach(prod => {
     const code = prod.querySelector('h3').textContent.trim();
     const name = prod.querySelector('p').textContent.trim();
@@ -1001,9 +1050,9 @@ function finalizeOrder() {
   window.location.href = 'finalize.html';
 }
 
+//----------------- IMAGE PRELOAD -----------------
 window.addEventListener("load", () => {
   const productImages = document.querySelectorAll(".product");
-
   productImages.forEach(img => {
     const preload = new Image();
     preload.src = img.src;
@@ -1015,4 +1064,16 @@ document.querySelectorAll('img').forEach(img => {
     img.src = 'product-photo/' + img.getAttribute('src');
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
 

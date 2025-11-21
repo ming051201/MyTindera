@@ -15,20 +15,49 @@
       <input type="text" class="search-box" placeholder="Search products..." />
       <div class="btn-order-group">
         <div class="dropdown">
-          <button onclick="toggleDropdown()" class="dropbtn">CATEGORY ▼</button>
+          <button onclick="toggleDropdown('dropdownMenu')" class="dropbtn">BRANDS ▼</button>
             <div id="dropdownMenu" class="dropdown-content">
-              <a href="#" onclick="filterCategory('all')">ALL</a>
-              <a href="#" onclick="filterCategory('can')">CANNED & PACK FOOD</a>
-              <a href="#" onclick="filterCategory('dry')">DRY GOODS</a>
-              <a href="#" onclick="filterCategory('snack')">SNACK</a>
-              <a href="#" onclick="filterCategory('beverage')">BEVERAGE</a>
-              <a href="#" onclick="filterCategory('condiments')">CONDIMENTS</a>
-              <a href="#" onclick="filterCategory('dairy')">DAIRY</a>
-              <a href="#" onclick="filterCategory('household')">HOUSEHOLD</a>
-              <a href="#" onclick="filterCategory('health')">HEALTH & HYGIENE</a>
-              <a href="#" onclick="filterCategory('babies')">BABIES' CARE</a>
+              <a href="#" onclick="filterBrand('all')">ALL</a>
+              <a href="#" onclick="filterBrand('555')">555</a>
+              <a href="#" onclick="showSubDropdown('a', event)">A</a>
+              <a href="#" onclick="showSubDropdown('b', event)">B</a>
+              <a href="#" onclick="showSubDropdown('c', event)">C</a>
+              <a href="#" onclick="showSubDropdown('d', event)">D</a>
+              <a href="#" onclick="showSubDropdown('e', event)">E</a>
+              <a href="#" onclick="showSubDropdown('f', event)">F</a>
+              <a href="#" onclick="showSubDropdown('g', event)">G</a>
+              <a href="#" onclick="showSubDropdown('h', event)">H</a>
+              <a href="#" onclick="showSubDropdown('i', event)">I</a>
+              <a href="#" onclick="showSubDropdown('j', event)">J</a>
+              <a href="#" onclick="showSubDropdown('k', event)">K</a>
+              <a href="#" onclick="showSubDropdown('l', event)">L</a>
+              <a href="#" onclick="showSubDropdown('m', event)">M</a>
+              <a href="#" onclick="showSubDropdown('n', event)">N</a>
+              <a href="#" onclick="showSubDropdown('o', event)">O</a>
+              <a href="#" onclick="showSubDropdown('p', event)">P</a>
+              <a href="#" onclick="showSubDropdown('q', event)">Q</a>
+              <a href="#" onclick="showSubDropdown('r', event)">R</a>
+              <a href="#" onclick="showSubDropdown('s', event)">S</a>
+              <a href="#" onclick="showSubDropdown('t', event)">T</a>
+              <a href="#" onclick="showSubDropdown('u', event)">U</a>
+              <a href="#" onclick="showSubDropdown('v', event)">V</a>
+              <a href="#" onclick="showSubDropdown('w', event)">W</a>
+              <a href="#" onclick="showSubDropdown('x', event)">X</a>
+              <a href="#" onclick="showSubDropdown('y', event)">Y</a>
+              <a href="#" onclick="showSubDropdown('z', event)">Z</a>
+
+
+            </div>
+            <div id="subDropdownMenu" class="dropdown-content sub-dropdown hidden"></div>
+        </div>
+
+        <div class="dropdown">
+          <button onclick="toggleDropdown('dropdownMenu2')" class="dropbtn">PRODUCTS ▼</button>
+            <div id="dropdownMenu2" class="dropdown-content2">
+               <a href="#" onclick="filterType('all')">ALL</a>
             </div>
         </div>
+
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
         <button class="btn-basket" onclick="showOrderSummary()">BASKET</button>
         <button class="btn-finalize" onclick="finalizeOrder()">FINALIZE</button>
@@ -53,7 +82,7 @@
 
 <!-- PRODUCT LIST -->
 <!-- 10001 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10001.png" alt="10001" />
   <div class="product-details">
     <div class="product-info">
@@ -75,7 +104,7 @@
   </div>
 </div>
 <!-- 10002 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10002.png" alt="10002" />
   <div class="product-details">
     <div class="product-info">
@@ -97,7 +126,7 @@
   </div>
 </div>
 <!-- 10003 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10003.png" alt="10003" />
   <div class="product-details">
     <div class="product-info">
@@ -119,7 +148,7 @@
   </div>
 </div>
 <!-- 10004 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10004.png" alt="10004" />
   <div class="product-details">
     <div class="product-info">
@@ -141,7 +170,7 @@
   </div>
 </div>
 <!-- 10005 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10005.png" alt="10005" />
   <div class="product-details">
     <div class="product-info">
@@ -163,7 +192,7 @@
   </div>
 </div>
 <!-- 10006 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10006.png" alt="10006" />
   <div class="product-details">
     <div class="product-info">
@@ -185,7 +214,7 @@
   </div>
 </div>
 <!-- 10007 -->
-<div class="product" data-category="can">
+<div class="product" data-brand="555">
   <img src="10007.png" alt="10007" />
   <div class="product-details">
     <div class="product-info">
@@ -207,7 +236,7 @@
   </div>
 </div>
 <!-- 10008 -->
-<div class="product" data-category="beverage">
+<div class="product" data-brand="Absolute">
   <img src="10008.png" alt="10008" />
   <div class="product-details">
     <div class="product-info">
