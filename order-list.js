@@ -814,7 +814,7 @@ function clearOrders() {
 
 //----------------- DROPDOWNS -----------------
 const brands = {
-  a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONOSO", "ALPINEe", "ANGEL", "ARGENTINA", "ARIEL"],
+  a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONOSO", "ALPINE", "ANGEL", "ARGENTINA", "ARIEL"],
   b: ["BEAR BRAND", "BENG-BENG", "BRAVO", "BREEZE", "BUTTER CREAM"],
   c: ["CARE FREE", "CDO", "CENTURY TUNA","CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEAR MEN", "CLOSE UP", "COBRA", "COCA COLA", "COCO PANDAN", "COFFEE-MATE", "COLGATE", "COMBI", "CREAMSILK", "CRISPY FRY" ],
   // Add all letters with brands
