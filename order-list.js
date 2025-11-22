@@ -815,8 +815,31 @@ function clearOrders() {
 //----------------- DROPDOWNS -----------------
 const brands = {
   a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONOSO", "ALPINE", "ANGEL", "ARGENTINA", "ARIEL"],
-  b: ["BEAR BRAND", "BENG-BENG", "BRAVO", "BREEZE", "BUTTER CREAM"],
-  c: ["CARE FREE", "CDO", "CENTURY TUNA","CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEAR MEN", "CLOSE UP", "COBRA", "COCA COLA", "COCO PANDAN", "COFFEE-MATE", "COLGATE", "COMBI", "CREAMSILK", "CRISPY FRY" ],
+  b: ["BEAR BRAND", "BENG-BENG", "BRAVO!", "BREEZE", "BUTTER CREAM"],
+  c: ["CARE FREE", "CDO", "CENTURY TUNA","CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEAR MEN", "CLOSE UP", "COBRA", "COCA COLA", "COCO PANDAN", "COFFEE-MATE", "COLGATE", "COMBI", "CREAMSILK",],
+  d: ["DATU PUTI", "DEL MONTE", "DOVE", "DOWNY", "DELIMONDO"],
+  e: ["EMPERADOR", "ENERGEN", "EQ", "EDEN"],
+  f: ["FITA", "FRES", "FRUOTS", "FUDGEE BARR"],
+  g: ["GATORADE", "GREAT TASTE"],
+  h: ["HAPPEE", "HAPPY", "HERMANO", "HOKKAIDO", "HUNT'S", "HANSEL"],
+  i: [],
+  j: ["JOHNSON'S", "JOLLY", "JOY", "JACK 'N JILL"],
+  k: ["KNORR", "KOPIKO"],
+  l: ["LADY'S CHOICE", "LIGO", "LIPTON", "LORINS", "LUCKY ME!"],
+  m: ["MALING", "MANG TOMAS", "MEGA", "MODESS", "MOUNTAIN DEW", "MR. HAT"],
+  n: ["NESTLE", "NESCAFE", "NESTEA", "NISSIN",  ],
+  o: ["OFF"],
+  p: ["PALMOLIVE", "PAMPERS", "PANTENE", "PAPA", "PERLA", "POCHI", "PRESTO", "PUREFOODS"],
+  q: [],
+  r: ["RC", "REBISCO", "REFRESH"],
+  s: ["SAFEGUARD", "SAN MARINO", "SAN MIGUEL", "SILKA", "SILVER SWAN", "SKY FLAKES", "SNOW BEAR", "SPEED", "SPRITE", "STAR", "SUMMIT", "SUNSILK", "SUPER Q", "SURF", "SHIN RAMYUN", "SHINE MASTER"],
+  t: ["TODAY'S", "TANG", "TENDER CARE", "THOSE DAYS", "TIDE", "TANDUAY"],
+  u: ["UFC"],
+  v: [],
+  w: ["WHISPER", "WILKINS", "WOW! ULAM",],
+  x: [],
+  y: ["YAKULT", "YOUNG'S TOWN"],
+  z: ["ZEST-O", "ZONROX"],
   // Add all letters with brands
 };
 
