@@ -894,19 +894,24 @@ window.addEventListener('click', function(event) {
 
 //----------------- FILTER BRAND -----------------
 function filterBrand(brand) {
-  const products = document.querySelectorAll(".product");
-  products.forEach(product => {
-    if (brand === "all" || product.dataset.brand === brand) {
-      product.style.display = "flex";
-    } else {
-      product.style.display = "none";
-    }
-  });
+  // 1. Update filteredProducts based on selected brand
+  if (brand === "all") {
+    filteredProducts = [...allProducts]; 
+  } else {
+    filteredProducts = allProducts.filter(prod => prod.dataset.brand === brand);
+  }
 
-  // Close dropdowns after selection
+  // 2. Reset page to 1 after filtering
+  currentPage = 1;
+
+  // 3. Re-display products WITH pagination applied
+  displayProducts(currentPage);
+
+  // 4. Close dropdowns
   document.getElementById("dropdownMenu").classList.remove("show");
-  document.getElementById("subDropdown").style.display = "none";
+  document.getElementById("subDropdownMenu").style.display = "none";
 }
+
 
 //----------------- ORDER SUMMARY -----------------
 function showOrderSummary() {
