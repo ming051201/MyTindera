@@ -117,51 +117,46 @@
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
   <script>
-    function goBack() {
-      window.history.back();
-    }
+function goBack() {
+  window.history.back();
+}
 
-    const container = document.getElementById('orderContainer');
-    const totalDisplay = document.getElementById('grandTotal');
+const container = document.getElementById('orderContainer');
+const totalDisplay = document.getElementById('grandTotal');
 
-    const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
-    const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
+// Load finalized orders
+const finalizedOrders = JSON.parse(localStorage.getItem('finalizedOrders')) || [];
 
-
-    let locationString = `${locationData.house || ''}`.trim() + 
-                         `,${locationData.building || ''}`.trim() +
-                         `, ${locationData.street || ''}`.trim() +
-                         `, ${locationData.barangay || ''}`.trim() +
-                         `, ${locationData.town || ''}`.trim() +
-                         `, ${locationData.city || ''}`.trim() +
-                         `, ${locationData.province || ''}`.trim() +
-                         `, ${locationData.zipcode || ''}`.trim();
+// Load user data
+// Load login data
+const loginData = JSON.parse(localStorage.getItem('loginData')) || {};
+const userString = `${loginData.user || ''}, ${loginData.acc || ''}, ${loginData.date || ''}`.trim();
 
 
-    if (finalizedOrders.length === 0) {
-      container.innerHTML = '<p>No finalized orders found.</p>';
-      totalDisplay.textContent = 'Grand Total: ₱0.00';
-    } else {
-      let totalAmount = 0;
+// Display table
+if (finalizedOrders.length === 0) {
+  container.innerHTML = '<p>No finalized orders found.</p>';
+  totalDisplay.textContent = 'Grand Total: ₱0.00';
+} else {
+  let totalAmount = 0;
 
- 
-    let html = `
-      ${locationString ? `<p><strong>Location:</strong> ${locationString}</p>` : ''}
-      <table id="ordersTable">
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Product</th>
-            <th>UOM</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
+  let html = `
+    ${userString ? `<p><strong>User Info:</strong> ${userString}</p>` : ''}
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Product</th>
+          <th>UOM</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
       <tbody>
-    `;
+  `;
 
-      finalizedOrders.forEach(item => {
+  finalizedOrders.forEach(item => {
     html += `
       <tr>
         <td>${item.code}</td>
@@ -172,45 +167,43 @@
         <td>₱${item.total.toFixed(2)}</td>
       </tr>
     `;
-    totalAmount += item.total;});
+    totalAmount += item.total;
+  });
 
+  html += `
+      <tr>
+        <td colspan="5" style="text-align:right; font-weight:bold;">Grand Total</td>
+        <td style="font-weight:bold;">₱${totalAmount.toFixed(2)}</td>
+      </tr>
+      </tbody>
+    </table>
+  `;
 
-    html += `<tr>
-             <td colspan="5" style="text-align:right; font-weight:bold;">Grand Total</td>
-             <td style="font-weight:bold;">₱${totalAmount.toFixed(2)}</td>
-             </tr>`;
+  container.innerHTML = html;
+  totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;
+}
 
-    html += `</tbody></table>`;
-      container.innerHTML = html;
-      totalDisplay.textContent = `Grand Total: ₱${totalAmount.toFixed(2)}`;}
+// Export to Excel
+function exportToExcel() {
+  const table = document.getElementById('ordersTable');
+  const thead = table.querySelector('thead');
 
-    function exportToExcel() {
-      const locationData = JSON.parse(localStorage.getItem('locationData')) || {};
+  // Remove previous user info row if exists
+  const existingRow = thead.querySelector('.user-row');
+  if (existingRow) existingRow.remove();
 
-    const locationString = `${locationData.house || ''} `.trim() +
-                           `,${locationData.building || ''}`.trim() +
-                           `, ${locationData.street || ''}`.trim() +
-                           `, ${locationData.barangay || ''}`.trim() +
-                           `, ${locationData.town || ''}`.trim() +
-                           `, ${locationData.city || ''}`.trim() +
-                           `, ${locationData.province || ''}`.trim() +
-                           `,${locationData.zipcode || ''}`.trim();
-
-    const table = document.getElementById('ordersTable');
-    const thead = table.querySelector('thead');
-    const existingLocationRow = thead.querySelector('.location-row');
-
-    if (existingLocationRow) existingLocationRow.remove();
-
-    if (locationString) {
-      const locationRow = document.createElement('tr');
-      locationRow.classList.add('location-row');
-      locationRow.innerHTML = `<td colspan="6" style="font-weight:bold; text-align:left;">Location: ${locationString}</td>`;
-      thead.insertBefore(locationRow, thead.firstChild);}
-
-    const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
-    XLSX.writeFile(wb, "FinalizedOrders.xlsx");
+  // Add user info at the top
+  if (userString) {
+    const newRow = document.createElement('tr');
+    newRow.classList.add('user-row');
+    newRow.innerHTML = `<td colspan="6" style="font-weight:bold; text-align:left;">User Info: ${userString}</td>`;
+    thead.insertBefore(newRow, thead.firstChild);
   }
-  </script>
+
+  const wb = XLSX.utils.table_to_book(table, { sheet: "Orders" });
+  XLSX.writeFile(wb, "FinalizedOrders.xlsx");
+}
+</script>
+
 </body>
 </html>

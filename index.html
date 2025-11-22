@@ -72,8 +72,7 @@
         background-color: rgb(230, 230, 230);
       }
 
-    .txtbox-name, .txtbox-hse-no, .txtbox-bldg, .txtbox-str, .txtbox-brgy,
-    .txtbox-twn, .txtbox-city, .txtbox-prov, .txtbox-zip { 
+    .txtbox-user, .txtbox-acc, .txtbox-date { 
       font-size: 16px; 
       padding: clamp(1px, 3vh, 6px) clamp(6px, 2vw, 12px);
       border-radius: 8px; 
@@ -101,13 +100,21 @@
       border: 1px solid #aaa; 
       cursor: pointer; 
       transition: 0.3s; 
-      width: 30%; 
+      width: 50%; 
       margin: 5px auto 0 auto; 
       display: block; 
     }
       .btn-enter:hover {
         background-color: rgb(230, 230, 230);
       }
+    
+    /* Make days from previous/next month same style as normal days */
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.prevMonthDay {
+    opacity: 1 !important;       /* Remove faded look */
+    font-weight: normal !important; /* Or use bold if you want */
+    color: inherit !important;    /* Make color same as normal days */
+}
   </style>
 </head>
 <body>
@@ -119,76 +126,106 @@
 
     <div class="form"> 
 
-      <button type="button" class="btn-toggle" onclick="toggleAddress()">ORDER NOW</button>      
-      <div class="hidden" id="address-section"> 
-        <input type="text" id="name" class="txtbox-name" placeholder="Full Name"> 
+      <button type="button" class="btn-toggle" onclick="toggleLogin()">ORDER NOW</button>      
+      <div class="hidden" id="login-section"> 
 
         <div class="row-1">
-          <div class="hse-no-field">
-            <input type="text" id="house" class="txtbox-hse-no" placeholder="Hse No.">
+          <div class="user-field">
+            <input type="text" id="user" class="txtbox-user" placeholder="Username">
           </div> 
-          <div class="bldg-field">
-            <input type="text" id="building" class="txtbox-bldg" placeholder="Building/Tower/Subdivision (if applicable)"> 
-          </div>   
         </div>
 
         <div class="row-2">
-          <div class="str-field">
-            <input type="text" id="street" class="txtbox-str" placeholder="Street Name">
+          <div class="acc-field">
+            <input type="text" id="acc" class="txtbox-acc" placeholder="Account Number">
           </div> 
-          <div class="brgy-field">
-            <input type="text" id="barangay" class="txtbox-brgy" placeholder="Barangay"> 
-          </div>  
-          <div class="twn-field">
-            <input type="text" id="town/district" class="txtbox-twn" placeholder="Town/District">
-          </div>  
         </div>
 
         <div class="row-3">
-          <div class="city-field">
-            <input type="text" id="city/municipality" class="txtbox-city" placeholder="City/Municipality"> 
-          </div>  
-          <div class="prov-field">
-            <input type="text" id="province" class="txtbox-prov" placeholder="Province"> 
-          </div>
-          <div class="zip-field">
-            <input type="text" id="zipcode" class="txtbox-zip" placeholder="Zipcode">
-          </div>         
+          <div class="date-field">
+            <input type="date" id="date" class="txtbox-date" placeholder="Delivery Date"> 
+          </div>          
         </div>
 
         <button class="btn-enter" onclick="goToOrderList()">SHOP NOW</button> 
       </div>
     </div>
   </div>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    function toggleAddress() { 
-      const section = document.getElementById("address-section");
-      section.classList.toggle("hidden");
-    }
   
-    function goToOrderList() { 
-      window.location.href = "order-list.html";
+function toggleLogin() { 
+  const section = document.getElementById("login-section");
+  section.classList.toggle("hidden");
+}
+
+function goToOrderList() { 
+  window.location.href = "order-list.html";
+}
+
+// Save login data to localStorage
+function saveLogin() { 
+  const loginData = {
+    user: document.getElementById('user').value,
+    acc: document.getElementById('acc').value,
+    date: (JSON.parse(localStorage.getItem('loginData')) || {}).date || ''
+  };
+
+  localStorage.setItem('loginData', JSON.stringify(loginData));
+}
+
+// Save on typing
+const inputs = document.querySelectorAll('#user, #acc');
+inputs.forEach(input => input.addEventListener('keyup', saveLogin));
+
+// Or save and go to next page
+function saveAndGo() {
+  saveLogin();
+  goToOrderList();
+}
+
+// Get today in Philippine Time (UTC+8)
+function getTodayPHT() {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    return new Date(utc + 8 * 60 * 60 * 1000);
+}
+
+// Format date as YYYY-MM-DD
+function formatYMD(date) {
+    const y = date.getFullYear();
+    const m = (date.getMonth() + 1).toString().padStart(2, '0');
+    const d = date.getDate().toString().padStart(2, '0');
+    return `${y}-${m}-${d}`;
+}
+
+const today = getTodayPHT();
+
+// Block today + next 2 days
+const blockedDates = [];
+for (let i = 0; i < 3; i++) { // 0 = today, 1 = tomorrow, 2 = day after
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    blockedDates.push(formatYMD(d));
+}
+
+// Initialize Flatpickr
+flatpickr("#date", {
+    dateFormat: "Y-m-d",
+    disable: blockedDates,
+    minDate: today,
+    onChange: function(selectedDates, dateStr) {
+        // Save the selected delivery date immediately
+        const loginData = JSON.parse(localStorage.getItem('loginData')) || {};
+        loginData.date = dateStr;
+        localStorage.setItem('loginData', JSON.stringify(loginData));
     }
+});
 
-    function saveLocation() { 
-      const locationData = {
-        house: document.getElementById('house').value,
-        building: document.getElementById('building').value,
-        street: document.getElementById('street').value,
-        barangay: document.getElementById('barangay').value,
-        town: document.getElementById('town/district').value,
-        city: document.getElementById('city/municipality').value,
-        province: document.getElementById('province').value,
-        zipcode: document.getElementById('zipcode').value};
 
-    localStorage.setItem('locationData', JSON.stringify(locationData));
-  }
-
-    const inputs = document.querySelectorAll( 
-      '#house, #building, #street, #barangay, #town\\/district, #city\\/municipality, #province, #zipcode');
-
-    inputs.forEach(input => input.addEventListener('keyup', saveLocation)); 
-  </script>
+</script>
 </body>
 </html>
 
