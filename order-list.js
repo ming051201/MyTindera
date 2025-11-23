@@ -912,6 +912,20 @@ function filterBrand(brand) {
   document.getElementById("subDropdownMenu").style.display = "none";
 }
 
+function filterType(product) {
+  if (product === "all") {
+    filteredProducts = [...allProducts];
+  } else {
+    filteredProducts = allProducts.filter(prod => prod.dataset.type === product);
+  }
+
+  currentPage = 1;
+  displayProducts(currentPage);
+
+  // Close dropdown
+  document.getElementById("dropdownMenu2").style.display = "none";
+}
+
 
 //----------------- ORDER SUMMARY -----------------
 function showOrderSummary() {
