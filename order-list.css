@@ -163,7 +163,7 @@ html, body {
 }
 
 .dropbtn img.promo-btn-img {
-  height: 10px;           /* fills the 10px button */
+  height: 14px;           /* fills the 10px button */
   width: auto;            /* keep aspect ratio */
   margin: 0;
   padding: 0;
