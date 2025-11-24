@@ -104,6 +104,7 @@ html, body {
   padding: clamp(6px, 1.5vh, 6px) clamp(1px, 1.5vw, 3px);
   border-radius: 8px; border: none; cursor: pointer;
   transition: 0.3s; display: inline-block;}
+  
 
   /* Make BRANDS dropdown scrollable */
 #dropdownMenu {
@@ -111,14 +112,14 @@ html, body {
   overflow-y: auto;   /* enables vertical scrolling */
 }
 
-.dropdown-content a:hover, .dropdown-content2 a:hover, .dropbtn:hover, .btn-clear:hover, .btn-basket:hover, .btn-finalize:hover {
+.dropdown-content a:hover, .dropdown-content2 a:hover, .dropdown-content3 a:hover, .dropbtn:hover, .btn-clear:hover, .btn-basket:hover, .btn-finalize:hover {
   background-color: rgb(230,230,230); color: black;}
 
 .dropdown {
   position: relative;
   display: inline-block;}
 
-.dropdown-content2 {
+.dropdown-content2, .dropdown-content3 {
   display: none;
   position: absolute;
   background-color: white;
@@ -139,7 +140,7 @@ html, body {
 .show {
   display: block;}
 
-.dropdown-content a, .dropdown-content2 a {
+.dropdown-content a, .dropdown-content2 a, .dropdown-content3 a {
   color: black;
   padding: 10px 14px;
   text-decoration: none;
@@ -160,6 +161,17 @@ html, body {
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   z-index: 1000;
 }
+
+.dropbtn img.promo-btn-img {
+  height: 10px;           /* fills the 10px button */
+  width: auto;            /* keep aspect ratio */
+  margin: 0;
+  padding: 0;
+  display: block;         /* remove inline spacing */
+  object-fit: contain;
+  pointer-events: none;
+}
+
 
 .product {
   width: 360px; 

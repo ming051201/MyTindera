@@ -845,7 +845,7 @@ const brands = {
 
 function toggleDropdown(menuId) {
   // Close all dropdowns except the one clicked
-  document.querySelectorAll('.dropdown-content, .dropdown-content2, #subDropdownMenu').forEach(menu => {
+  document.querySelectorAll('.dropdown-content, .dropdown-content2, .dropdown-content3, #subDropdownMenu').forEach(menu => {
     if (menu.id !== menuId) menu.style.display = 'none';
   });
 
@@ -884,7 +884,7 @@ function showSubDropdown(letter, event) {
 // Close dropdowns if clicked outside
 window.addEventListener('click', function(event) {
   if (!event.target.matches('.dropbtn') && !event.target.closest('.dropdown-content')) {
-    document.querySelectorAll('.dropdown-content, .dropdown-content2').forEach(menu => {
+    document.querySelectorAll('.dropdown-content, .dropdown-content2, .dropdown-content3').forEach(menu => {
       menu.style.display = 'none';
     });
     document.getElementById("subDropdownMenu").style.display = "none";
@@ -924,6 +924,21 @@ function filterType(product) {
 
   // Close dropdown
   document.getElementById("dropdownMenu2").style.display = "none";
+}
+
+
+function filterPromo(product) {
+  if (product === "all") {
+    filteredProducts = [...allProducts];
+  } else {
+    filteredProducts = allProducts.filter(prod => prod.dataset.promo === product);
+  }
+
+  currentPage = 1;
+  displayProducts(currentPage);
+
+  // Close dropdown
+  document.getElementById("dropdownMenu3").style.display = "none";
 }
 
 

@@ -60,6 +60,16 @@
             </div>
         </div>
 
+                        <div class="dropdown">
+  <button onclick="toggleDropdown('dropdownMenu3')" class="dropbtn">
+    <img src="promo.png" alt="Promo" class="promo-btn-img">
+  </button>
+  <div id="dropdownMenu3" class="dropdown-content3">
+    <a href="#" onclick="filterPromo('all')">ALL</a>
+    <a href="#" onclick="filterPromo('555')">555</a>
+  </div>
+</div>
+
         <button class="btn-clear" onclick="clearOrders()">CLEAR</button>
         <button class="btn-basket" onclick="showOrderSummary()">BASKET</button>
         <button class="btn-finalize" onclick="finalizeOrder()">FINALIZE</button>
@@ -84,7 +94,7 @@
 
 <!-- PRODUCT LIST -->
 <!-- 10001 -->
-<div class="product" data-brand="555">
+<div class="product" data-brand="555" data-promo="555">
   <img src="10001.png" alt="10001" />
   <div class="product-details">
     <div class="product-info">
