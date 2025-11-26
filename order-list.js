@@ -814,34 +814,33 @@ function clearOrders() {
 
 //----------------- DROPDOWNS -----------------
 const brands = {
-  a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONOSO", "ALPINE", "ANGEL", "ARGENTINA", "ARIEL"],
-  b: ["BEAR BRAND", "BENG-BENG", "BRAVO!", "BREEZE", "BUTTER CREAM"],
-  c: ["CARE FREE", "CDO", "CENTURY TUNA","CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEAR MEN", "CLOSE UP", "COBRA", "COCA COLA", "COCO PANDAN", "COFFEE-MATE", "COLGATE", "COMBI", "CREAMSILK",],
-  d: ["DATU PUTI", "DEL MONTE", "DOVE", "DOWNY", "DELIMONDO"],
-  e: ["EMPERADOR", "ENERGEN", "EQ", "EDEN"],
-  f: ["FITA", "FRES", "FRUOTS", "FUDGEE BARR"],
-  g: ["GATORADE", "GREAT TASTE"],
-  h: ["HAPPEE", "HAPPY", "HERMANO", "HOKKAIDO", "HUNT'S", "HANSEL"],
-  i: [],
-  j: ["JOHNSON'S", "JOLLY", "JOY", "JACK 'N JILL"],
-  k: ["KNORR", "KOPIKO"],
-  l: ["LADY'S CHOICE", "LIGO", "LIPTON", "LORINS", "LUCKY ME!"],
-  m: ["MALING", "MANG TOMAS", "MEGA", "MODESS", "MOUNTAIN DEW", "MR. HAT"],
-  n: ["NESTLE", "NESCAFE", "NESTEA", "NISSIN",  ],
+  a: ["ABSOLUTE", "AJINOMOTO", "ALASKA", "ALFONSO", "ALPINE", "ARGENTINA", "ARIEL"],
+  b: ["BEARBRAND", "BENG-BENG", "BREEZE", "BUTTERCREAM"],
+  c: ["CAREFREE", "CDO", "CENTURYTUNA", "CHAMPI", "CHAMPION", "CHOOEY", "CHUCKIE", "CLEARMEN", "CLOSE-UP", "COCACOLA", "COBRA", "COCOPANDAN", "COFFEE-MATE", "COLGATE", "CREAMSILK", "CRISPYFRY"],
+  d: ["DATUPUTI", "DELMONTE", "DELIMONDO", "DOVE", "DOWNY"],
+  e: ["EMPERADOR", "ENERGEN", "EQ"],
+  f: ["FITA", "FRES", "FRUTOS", "FUDGEEBARR"],
+  g: ["GATORADE", "GINISA", "GREATTASTE"],
+  h: ["HAPPEE", "HAPIFIESTA", "HAPPY", "HANSEL", "HERMANO", "HOKKAIDO", "HUNTS"],
+  i: ["ICOOL"],
+  j: ["JOHNSONSBABY", "JOY", "JOLLY"],
+  k: ["KNORR", "KOPIKO", "KRAFT"],
+  l: ["LADYSCHOICE", "LIGO", "LIPTON", "LORINS", "LUCKYME!"],
+  m: ["MALING", "MANGTOMAS", "MAXX", "MEGA", "MILO", "MODESS", "MOUNTAINDEW", "MR.HATGULAMAN"],
+  n: ["NESCAFE", "NESTEA", "NESTLE", "NISSIN"],
   o: ["OFF"],
-  p: ["PALMOLIVE", "PAMPERS", "PANTENE", "PAPA", "PERLA", "POCHI", "PRESTO", "PUREFOODS"],
-  q: [],
+  p: ["PALMOLIVE", "PAMPERS", "PANTENE", "PAPA", "PERLA", "POTCHI", "PRESTO", "PUREFOODS"],
   r: ["RC", "REBISCO", "REFRESH"],
-  s: ["SAFEGUARD", "SAN MARINO", "SAN MIGUEL", "SILKA", "SILVER SWAN", "SKY FLAKES", "SNOW BEAR", "SPEED", "SPRITE", "STAR", "SUMMIT", "SUNSILK", "SUPER Q", "SURF", "SHIN RAMYUN", "SHINE MASTER"],
-  t: ["TODAY'S", "TANG", "TENDER CARE", "THOSE DAYS", "TIDE", "TANDUAY"],
+  s: ["SAFEGUARD", "SANMARINO", "SANMIGUEL", "SHINRAMYUN", "SILKA", "SILVERSWAN", "SKYFLAKES", "SNOWBEAR", "SNOWMOUNTAIN", "SPEED", "SPRITE", "STARWAX", "SUMMIT", "SUNSILK", "SUPERQ", "SURF"],
+  t: ["TANDUAY", "TANG", "TENDERCARE", "THOSEDAYS", "TIDE", "TODAYS"],
   u: ["UFC"],
-  v: [],
-  w: ["WHISPER", "WILKINS", "WOW! ULAM",],
-  x: [],
-  y: ["YAKULT", "YOUNG'S TOWN"],
-  z: ["ZEST-O", "ZONROX"],
-  // Add all letters with brands
+  v: ["VFRESH"],
+  w: ["WHISPER", "WILKINS", "WOWULAM"],
+  y: ["YAKISOBA", "YAKULT", "YOUNGSTOWN"],
+  z: ["ZESTO", "ZONROX"],
 };
+  // Add all letters with brands
+
 
 function toggleDropdown(menuId) {
   // Close all dropdowns except the one clicked
