@@ -107,7 +107,7 @@ html, body {
   
 
   /* Make BRANDS dropdown scrollable */
-#dropdownMenu, #dropdownMenu2 {
+#dropdownMenu, #dropdownMenu2, #dropdownMenu3 {
   max-height: 250px; /* or any height you want */
   overflow-y: auto;   /* enables vertical scrolling */
 }
